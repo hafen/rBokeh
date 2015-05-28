@@ -410,6 +410,43 @@ get_hover <- function(hn, data) {
   ), class = "hoverSpec"))
 }
 
+get_callback <- function(hn, data) {
+  tmp <- try(eval(hn), silent = TRUE)
+  if(is.data.frame(tmp)) {
+    data <- tmp
+    hn <- names(data)
+  } else if(inherits(tmp, "callbackSpec")) {
+    return(tmp)
+  } else {
+    if(deparse(hn)[1] == "NULL") {
+      data <- data
+    } else if(is.null(data)) {
+      if(!is.data.frame(hn)) {
+        message("callback not added - 'callback' must be a data frame or list of variables present in the data frame supplied as the 'data' argument")
+        return(NULL)
+      } else {
+        data <- hn
+        hn <- names(data)
+      }
+    } else {
+      hn <- deparse(hn)[1]
+      hn <- gsub("c\\(|list\\(|\\)| +", "", hn)
+      hn <- strsplit(hn, ",")[[1]]
+      if(all(! hn %in% names(data))) {
+        message("There were no columns: ", paste(hn, collapse = ", "), " in the data for the callback tool - callback not added")
+        return(NULL)
+      }
+      data <- data[hn]
+    }
+  }
+  
+  for(ii in seq_len(ncol(data)))
+    data[[ii]] <- format(data[[ii]])
+  
+  return(structure(list(
+    data = data
+  ), class = "callbackSpec"))
+}
 
 # get the "url" argument and turn it into data and "dict"
 # must be a vector or a string referencing variables in data

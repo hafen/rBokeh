@@ -100,7 +100,7 @@ HTMLWidgets.widget({
 
       // install the callback
       if (!prevActionCallback)
-        x.all_models[ind].attributes.code = "rslt = getBokehSelected(cb_obj);" +
+        x.all_models[ind].attributes.code = "rslt = getBokehSelected(cb_obj, data);" +
           "var input_id = '" + id + "_callback';" +
           "Bokeh.logger.info('Sending data to shiny: ' + input_id);" +
           "Shiny.onInputChange(input_id, rslt);";
@@ -111,9 +111,9 @@ HTMLWidgets.widget({
 
 });
 
-getBokehSelected = function(cb_obj) {
+getBokehSelected = function(cb_obj, data) {
   var inds = cb_obj.get('selected')['1d'].indices;
-  var data = cb_obj.get('data');
+  //var data = cb_obj.get('data')
 
   var rslt = {};
   for (i = 0; i < inds.length; i++) {

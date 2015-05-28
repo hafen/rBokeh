@@ -1,7 +1,7 @@
 library(shiny)
 library(rbokeh)
 
-df = data.frame(group = rep(c("red", "blue"), 5), x = rnorm(10), y = rnorm(10))
+df = data.frame(group = rep(c("a", "b"), 5), x = rnorm(10), y = rnorm(10))
 
 ui = shinyUI(fixedPage(
   fixedRow(
@@ -18,7 +18,8 @@ ui = shinyUI(fixedPage(
 server = function(input, output) {
   output$rbka <- renderRbokeh({
     figure(xlab = "x", ylab = "y", xlim = c(-2, 2), ylim = c(-2, 2)) %>%
-      ly_points(x, y, data = df, color = group) #, url = "http://www.google.com?q=@group")
+      ly_points(x, y, data = df, color = group) #, callback = list(x, y, group)) 
+    #, url = "http://www.google.com?q=@group")
   })
   
   output$rbka_callback <- renderPrint({
@@ -30,7 +31,7 @@ server = function(input, output) {
     if (!is.null(input$rbka_callback)) {
       print(input$rbka_callback)
       figure(xlab = "x", ylab = "y", xlim = c(-2, 2), ylim = c(-2, 2)) %>%
-        ly_points(x, y, data = df[df$group == input$rbka_callback$fill_color, ],
+        ly_points(x, y, data = df[df$group == input$rbka_callback$group, ],
                   color = group)
     }
   })

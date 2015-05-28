@@ -36,8 +36,8 @@ add_tap_callback <- function(fig, callback, renderer_ref) {
 
 callback_model <- function(id, callback) {
   res <- base_model_object("Callback", id)
-  res$model$attributes$args <- list()
-  res$model$attributes$code <- callback
+  res$model$attributes$args <- callback
+  res$model$attributes$code <- NULL
   
   res
 }
