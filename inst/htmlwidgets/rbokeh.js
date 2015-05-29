@@ -10,7 +10,7 @@ HTMLWidgets.widget({
       elementid: "",
       width: width,
       height: height
-    }
+    };
   },
 
   renderValue: function(el, x, instance) {
@@ -18,7 +18,7 @@ HTMLWidgets.widget({
     //clear el for Shiny/dynamic contexts
     el.innerHTML = "";
 
-    if(x.isJSON == true) {
+    if(x.isJSON === true) {
       x.all_models = JSON.parse(x.all_models);
     }
 
@@ -35,7 +35,7 @@ HTMLWidgets.widget({
     if (HTMLWidgets.shinyMode)
       this.addActionCallbackShinyInput(el.id, x);
 
-    Bokeh.logger.info("Realizing plot:")
+    Bokeh.logger.info("Realizing plot:");
     Bokeh.logger.info(" - modeltype: " + x.modeltype);
     Bokeh.logger.info(" - modelid:   " + x.modelid);
     Bokeh.logger.info(" - elementid: " + x.elementid);
@@ -43,7 +43,7 @@ HTMLWidgets.widget({
     instance.modelid = x.modelid;
     instance.elementid = x.elementid;
 
-    if(x.debug == true) {
+    if(x.debug === true) {
       console.log(x.all_models);
       console.log(JSON.stringify(x.all_models));
     }
@@ -87,23 +87,25 @@ HTMLWidgets.widget({
   },
   
   addActionCallbackShinyInput : function(id, x) {
-    var ind = -1;
+    var ind = [];
     for(var i = 0; i < x.all_models.length; i += 1) {
         if(x.all_models[i].type === "Callback") {
-            ind = i;
+            ind.push(i);
         }
     }
 
-    if (ind > -1) {
-      // check for an existing actionCallback
-      var prevActionCallback = x.all_models[ind].attributes.code;
-
-      // install the callback
-      if (!prevActionCallback)
-        x.all_models[ind].attributes.code = "rslt = getBokehSelected(cb_obj, data);" +
-          "var input_id = '" + id + "_callback';" +
+    if (ind.length > 0) {
+      for(var j = 0; j < ind.length; j += 1) {
+        var code = x.all_models[ind[j]].attributes.code;
+  
+        // install the callback
+        Bokeh.logger.info('Adding callback model using ' + id + '_' + code);
+        x.all_models[ind[j]].attributes.code = "rslt = getBokehSelected(cb_obj, data);" +
+          "var input_id = '" + id + "_" + code + "';" +
           "Bokeh.logger.info('Sending data to shiny: ' + input_id);" +
+          "console.log(rslt);" +
           "Shiny.onInputChange(input_id, rslt);";
+      }
     } else {
       Bokeh.logger.info('No callback model present');
     }
@@ -117,11 +119,14 @@ getBokehSelected = function(cb_obj, data) {
 
   var rslt = {};
   for (i = 0; i < inds.length; i++) {
+    //Bokeh.logger.info('Found callback data: ' + inds[i]);
+    val = {};
     for (var key in data) {
       if (data.hasOwnProperty(key)) {
-        rslt[key] = data[key][inds[i]];
+        val[key] = data[key][inds[i]];
       }
     }
+    rslt[inds[i]] = val;
   }
 
   return(rslt);

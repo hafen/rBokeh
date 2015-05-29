@@ -13,7 +13,7 @@
 ## these are all internal functions called from make_glyph
 ## which is called from the various layer functions
 
-add_layer <- function(fig, spec, dat, lname, lgroup) {
+add_layer <- function(fig, spec, dat, lname, lgroup, callback = NULL) {
   glyph <- spec$glyph
   glyph <- underscore2camel(glyph)
   spec$glyph <- NULL
@@ -87,6 +87,11 @@ add_layer <- function(fig, spec, dat, lname, lgroup) {
   glr_id <- gen_id(fig, c("glyph_renderer", lgroup, lname))
   glyph_rend <- glyph_renderer_model(glr_id, dat_mod$ref, glyph_obj$ref, ns_glyph_obj$ref)
 
+  u_id <- gen_id(fig, c(glr_id, "select_callback"))
+  act <- callback_model(u_id, callback, "select_callback")
+  dat_mod$model$attributes$callback <- act$ref
+  fig$x$spec$model[[u_id]] <- act$model
+  
   fig$x$spec$model$plot$attributes$renderers[[glr_id]] <- glyph_rend$ref
 
   fig$x$spec$model[[d_id]] <- dat_mod$model

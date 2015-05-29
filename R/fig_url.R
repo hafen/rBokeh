@@ -18,10 +18,10 @@ add_tap_url <- function(fig, url, renderer_ref) {
   fig
 }
 
-add_tap_callback <- function(fig, callback, renderer_ref) {
+add_tap_callback <- function(fig, callback, renderer_ref, code) {
   
   u_id <- gen_id(fig, c(renderer_ref$id, "callback"))
-  act <- callback_model(u_id, callback)
+  act <- callback_model(u_id, callback, code)
   
   id <- gen_id(fig, c(renderer_ref$id, "TapTool"))
   tap <- tap_model(id, fig$x$spec$ref, renderer_ref, act$ref)
@@ -34,10 +34,10 @@ add_tap_callback <- function(fig, callback, renderer_ref) {
   fig
 }
 
-callback_model <- function(id, callback) {
+callback_model <- function(id, callback, code) {
   res <- base_model_object("Callback", id)
   res$model$attributes$args <- callback
-  res$model$attributes$code <- NULL
+  res$model$attributes$code <- code
   
   res
 }

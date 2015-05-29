@@ -159,7 +159,7 @@ make_glyph <- function(fig, type, lname, lgroup, data, args, axis_type_range,
       id = glr_id
     )
     
-    fig <- fig %>% add_tap_callback(callback, renderer_ref)
+    fig <- fig %>% add_tap_callback(callback, renderer_ref, "callback")
   }
 
   args$glyph <- type
@@ -184,7 +184,7 @@ make_glyph <- function(fig, type, lname, lgroup, data, args, axis_type_range,
       data$y1 <- to_epoch(data$y1)
   }
 
-  fig <- fig %>% add_layer(args, data, lname, lgroup)
+  fig <- fig %>% add_layer(args, data, lname, lgroup, callback)
 
   ## add x and y range for this glyph
   fig$x$spec$glyph_x_ranges[[lgn]] <- axis_type_range$x_range
