@@ -26,7 +26,7 @@
 #' @export
 ly_points <- function(fig, x, y = NULL, data = NULL,
   glyph = 21, color = NULL, alpha = 1, size = 10,
-  hover = NULL, url = NULL, callback = NULL, legend = NULL,
+  hover = NULL, url = NULL, callback = data, legend = NULL,
   lname = NULL, lgroup = NULL, ...) {
 
   validate_fig(fig, "ly_points")
@@ -49,7 +49,8 @@ ly_points <- function(fig, x, y = NULL, data = NULL,
 
   hover <- get_hover(substitute(hover), data)
   url <- get_url(url, data)
-  callback <- get_callback(substitute(callback), data)
+  if (!is.null(data))
+    callback <- get_callback(substitute(callback), data)
   
   xy_names <- get_xy_names(x, y, xname, yname, args)
   ## translate different x, y types to vectors

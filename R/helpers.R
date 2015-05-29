@@ -418,9 +418,9 @@ get_callback <- function(hn, data) {
   } else if(inherits(tmp, "callbackSpec")) {
     return(tmp)
   } else {
-    if(deparse(hn)[1] == "NULL") {
-      data <- data
-    } else if(is.null(data)) {
+    if(deparse(hn)[1] == "NULL")
+      return(NULL)
+    if(is.null(data)) {
       if(!is.data.frame(hn)) {
         message("callback not added - 'callback' must be a data frame or list of variables present in the data frame supplied as the 'data' argument")
         return(NULL)
