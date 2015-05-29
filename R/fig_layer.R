@@ -43,7 +43,16 @@ add_layer <- function(fig, spec, dat, lname, lgroup, callback = NULL) {
   names(glyph_attrs) <- names(spec)
   if(!is.null(glyph_attrs$size))
     glyph_attrs$size$units <- "screen"
-
+  
+  if(!is.null(glyph_attrs$start_angle))
+    glyph_attrs$start_angle$units <- "rad"
+  
+  if(!is.null(glyph_attrs$end_angle))
+    glyph_attrs$end_angle$units <- "rad"
+  
+  if(!is.null(glyph_attrs$angle))
+    glyph_attrs$angle$units <- "rad"
+  
   if(!is.null(glyph_attrs$line_dash))
     glyph_attrs$line_dash <- glyph_attrs$line_dash$value
 
