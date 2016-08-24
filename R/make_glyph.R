@@ -255,6 +255,9 @@ make_glyph <- function(fig, type, lname, lgroup, data, args,
       data$bottom <- handle_singleton(data$bottom, to_epoch)
   }
 
+  # we only want the index column to be in the data, not in the spec
+  args[["__idx"]] <- NULL
+
   fig <- fig %>% add_layer(args, data, lname, lgroup)
 
   ## add x and y range for this glyph

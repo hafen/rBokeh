@@ -7,6 +7,26 @@ customjs_model <- function(type = "CustomJS", id, code, args) {
   res
 }
 
+get_all_lnames <- function(lnames, fig_refs) {
+  do.call(c, lapply(lnames, function(ln) {
+    find_lname_groups(ln, fig_refs)
+  }))
+}
+
+# some layers are comprised of multiple layers - need to apply callback to all
+find_lname_groups <- function(lname, fig_refs) {
+  if (lname %in% names(fig_refs)) {
+    return(lname)
+  } else {
+    idx <- grepl(paste0("^", lname, "__"), names(fig_refs))
+    if (length(idx) > 0) {
+      return(names(fig_refs)[idx])
+    } else {
+      return(NULL)
+    }
+  }
+}
+
 # translate a vector of lnames to a list of refs
 # that will be made available inside custom callback
 callback_lname2args <- function(lnames, fig_refs) {
@@ -61,7 +81,8 @@ custom_callback <- function(code, lnames = NULL, args = NULL) {
 #' @example man-roxygen/ex-tap-debug-callback.R
 #' @export
 debug_callback <- function(lnames = NULL, args = NULL) {
-  structure(list(code = "debugger", lnames = lnames, args = args), class = "debugCallback")
+  structure(list(code = "debugger", lnames = lnames, args = args),
+    class = "debugCallback")
 }
 
 ## s3 methods
@@ -225,19 +246,19 @@ handle_tap_callback.shinyCallback <- function(x, fig_refs) {
   list(
     code = sprintf("
 if (HTMLWidgets.shinyMode) {
-  // var cols = cb_obj.attributes.column_names;
-  // var idx = cb_obj.attributes.selected['1d'].indices;
-  // var res = null;
-  // if (idx.length > 0) {
-  //   res = {}
-  //   for (var i = 0; i < cols.length; i++) {
-  //     res[cols[i]] = [];
-  //     for (var j = 0; j < idx.length; j++) {
-  //       res[cols[i]].push(cb_obj.attributes.data[cols[i]][idx[j]]);
-  //     }
-  //   }
-  // }
-  Shiny.onInputChange('%s', cb_obj.get('selected')['1d'].indices);
+  var cols = cb_obj.attributes.column_names;
+  var idx = cb_obj.attributes.selected['1d'].indices;
+  var res = null;
+  if (idx.length > 0) {
+    res = {}
+    for (var i = 0; i < cols.length; i++) {
+      res[cols[i]] = [];
+      for (var j = 0; j < idx.length; j++) {
+        res[cols[i]].push(cb_obj.attributes.data[cols[i]][idx[j]]);
+      }
+    }
+  }
+  Shiny.onInputChange('%s', res);
 }
 ", as.character(x$id)),
     args = c(x$args, callback_lname2args(x$lnames, fig_refs))

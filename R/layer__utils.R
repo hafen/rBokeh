@@ -364,8 +364,8 @@ sub_names <- function(
       ret$data[1:2],
       ret$info$xlab, ret$info$ylab
     )
-
     ret$data[1:2] <- d2_and_names$d2
+    ret$data[["__idx"]] <- d2_and_names$idx
     ret$info[c("x_name", "y_name")] <- d2_and_names$xy_name
   }
 
@@ -385,13 +385,10 @@ b_xy_data_and_names2 <- function(d2, xlab, ylab) {
   x_name <- "x"
   y_name <- "y"
 
-
   if (!is.null(attr(x, "stringName")))
     x_name <- attr(x, "stringName")
   if (!is.null(attr(y, "stringName")))
     y_name <- attr(y, "stringName")
-
-
 
   if (is.null(y)) {
     if (stats::is.ts(x)) {
@@ -432,6 +429,6 @@ b_xy_data_and_names2 <- function(d2, xlab, ylab) {
   d2[[1]] <- x
   d2[[2]] <- y
 
-
-  list(d2 = d2, xy_names = list(x_name = x_name, y_name = y_name))
+  list(d2 = d2, xy_names = list(x_name = x_name, y_name = y_name),
+    idx = seq_along(x))
 }

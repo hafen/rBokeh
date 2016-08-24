@@ -108,6 +108,9 @@ ly_points <- function(
     axis_type_range <- get_glyph_axis_type_range(arg_obj$data$x,
       arg_obj$data$y, glyph = arg_obj$params$glyph)
 
+    if (sln > 1)
+      arg_obj$info$lname <- paste0(arg_obj$info$lname, "__", ii)
+
     fig <- make_glyph(
       fig, arg_obj$params$glyph, lname = arg_obj$info$lname, lgroup = arg_obj$info$lgroup,
       data = arg_obj$data, data_sig = ifelse(is.null(data), NA, digest(data)),
