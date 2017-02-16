@@ -1,7 +1,7 @@
 # http://bokeh.pydata.org/en/latest/docs/reference/models.html
 
 #' Add "pan" tool to a Bokeh figure
-#' @param dimensions a vector specifying whether the pan tool should pan with respect to the x axis ("width") and the y axis ("height") or both (c("width", "height"))
+#' @param dimensions a string specifying whether the pan tool should pan with respect to the x axis ("width") and the y axis ("height") or both ("both")
 #' @template tools
 #' @examples
 #' \donttest{
@@ -10,12 +10,12 @@
 #'  tool_pan(dimensions = "height")
 #' }
 #' @export
-tool_pan <- function(fig, dimensions = c("width", "height")) {
+tool_pan <- function(fig, dimensions = "both") {
   update_tool(fig, which = "pan", args = list(dimensions = dimensions, plot_ref = fig$x$spec$ref))
 }
 
 #' Add "wheel_zoom" tool to a Bokeh figure
-#' @param dimensions a vector specifying whether the wheel_zoom tool should zoom with respect to the x axis ("width") and the y axis ("height") or both (c("width", "height"))
+#' @param dimensions a string specifying whether the wheel_zoom tool should zoom with respect to the x axis ("width") and the y axis ("height") or both ("both")
 #' @template tools
 #' @examples
 #' \donttest{
@@ -24,7 +24,7 @@ tool_pan <- function(fig, dimensions = c("width", "height")) {
 #'  tool_wheel_zoom(dimensions = "height")
 #' }
 #' @export
-tool_wheel_zoom <- function(fig, dimensions = c("width", "height")) {
+tool_wheel_zoom <- function(fig, dimensions = "both") {
   update_tool(fig, which = "wheel_zoom",
     args = list(dimensions = dimensions, plot_ref = fig$x$spec$ref))
 }
@@ -273,7 +273,8 @@ tool_model <- function(id, tool_name, plot_ref, ...) {
   dots <- list(...)
   dotnms <- names(dots)
   for (nm in dotnms) {
-    trns <- ifelse(is.logical(dots[[nm]]) || nm %in% c("help_tooltip", "redirect"), identity, I)
+    trns <- ifelse(is.logical(dots[[nm]]) || nm %in% c("help_tooltip", "redirect",
+      "dimensions"), identity, I)
     res$model$attributes[[nm]] <- trns(dots[[nm]])
   }
 
