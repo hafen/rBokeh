@@ -132,18 +132,20 @@ get_legend <- function(val) {
 # Subset args object
 #
 # @param arg_obj args object to be subsetted
-# @param idxs indicies that should be used
+# @param idxs indices that should be used
 # @return similar arg_obj, just subsetted at the suggested indicies
 subset_arg_obj <- function(arg_obj, idxs) {
-  non_subsetable_names <- c("lgroup", "lname", "legend", "xlab", "ylab", "x_name", "y_name")
+  non_subsettable_names <- c("lgroup", "lname", "legend", "xlab",
+    "ylab", "x_name", "y_name")
   n <- length(idxs)
 
   subset_obj <- function(x) {
     arg_names <- names(x)
+
     ret <- lapply(arg_names, function(key) {
       val <- x[[key]]
 
-      if (key %in% non_subsetable_names) {
+      if (key %in% non_subsettable_names) {
         return(val)
       }
 
@@ -369,6 +371,10 @@ sub_names <- function(
     ret$info[c("x_name", "y_name")] <- d2_and_names$xy_name
   }
 
+  ret$data[["__index"]] <- data[["__index"]]
+  if (is.null(ret$data[["__index"]]))
+    ret$data[["__index"]] <- seq_len(length(ret$data[[1]]))
+
   return(ret)
 }
 
@@ -385,13 +391,10 @@ b_xy_data_and_names2 <- function(d2, xlab, ylab) {
   x_name <- "x"
   y_name <- "y"
 
-
   if (!is.null(attr(x, "stringName")))
     x_name <- attr(x, "stringName")
   if (!is.null(attr(y, "stringName")))
     y_name <- attr(y, "stringName")
-
-
 
   if (is.null(y)) {
     if (stats::is.ts(x)) {
@@ -431,7 +434,6 @@ b_xy_data_and_names2 <- function(d2, xlab, ylab) {
 
   d2[[1]] <- x
   d2[[2]] <- y
-
 
   list(d2 = d2, xy_names = list(x_name = x_name, y_name = y_name))
 }
