@@ -10,11 +10,20 @@
 ## these are all internal functions called from make_glyph
 ## legends are specified through the various layer functions
 
-add_legend <- function(fig, legends, extra_pars) {
+add_legend <- function(fig, items, extra_pars) {
   leg_id <- gen_id(fig, "legend")
   leg_name <- "legend"
 
-  leg <- legend_model(leg_id, fig$x$spec$ref, legends, extra_pars)
+  litems <- list()
+  for (ii in seq_along(items)) {
+    it <- items[[ii]]
+    legitem_id <- gen_id(fig, paste0("legenditem", it[[1]]))
+    legitem <- legend_item_model(legitem_id, it[[1]], it[[2]])
+    fig$x$spec$model[[legitem_id]] <- legitem$model
+    litems[[ii]] <- legitem$ref
+  }
+
+  leg <- legend_model(leg_id, fig$x$spec$ref, litems, extra_pars)
 
   fig$x$spec$model$plot$attributes$renderers[[leg_id]] <- leg$ref
   fig$x$spec$model[[leg_name]] <- leg$model
@@ -22,12 +31,21 @@ add_legend <- function(fig, legends, extra_pars) {
   fig
 }
 
-legend_model <- function(id, plot_ref, legends, extra_pars) {
+legend_model <- function(id, plot_ref, items, extra_pars) {
   res <- base_model_object("Legend", id)
   res$model$attributes$plot <- plot_ref
-  res$model$attributes$legends <- legends
+  res$model$attributes$items <- items
 
   res$model$attributes <- c(res$model$attributes, extra_pars)
+
+  res
+}
+
+legend_item_model <- function(id, label, renderers, name = NULL) {
+  res <- base_model_object("LegendItem", id)
+  res$model$attributes$name <- name
+  res$model$attributes$label <- list(value = label)
+  res$model$attributes$renderers <- renderers
 
   res
 }
