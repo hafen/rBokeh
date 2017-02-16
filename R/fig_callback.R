@@ -85,10 +85,10 @@ handle_selection_callback <- function(x, args)
 handle_range_callback.consoleCallback <- function(x, fig_refs) {
   list(
     code = "
-if(range.get('factors')) {
-  console.log(range.get('factors'))
-} else if (range.get('start')) {
-  console.log('[' + range.get('start').toFixed(2) + ',' + range.get('end').toFixed(2) + ']')
+if(range.factors) {
+  console.log(range.factors)
+} else if (range.start) {
+  console.log('[' + range.start.toFixed(2) + ',' + range.end.toFixed(2) + ']')
 }",
     args = c(x$args, callback_lname2args(x$lnames, fig_refs))
   )
