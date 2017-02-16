@@ -176,7 +176,7 @@ make_glyph <- function(fig, type, lname, lgroup, data, args,
   ## se we'll handle it in the js prior to rendering
 
   ## spec needs to point to corresponding data
-  data_names <- names(data)
+  data_names <- setdiff(names(data), "__index")
   for (nm in data_names)
     args[[nm]] <- nm
 
