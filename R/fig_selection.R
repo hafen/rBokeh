@@ -10,6 +10,8 @@ tool_selection <- function(fig, callback, ref_layer) {
   nm <- paste(ref_layer, "data", sep = "_")
   did <- fig$x$spec$callback$layers[[ref_layer]][[nm]]$id
 
+  fig$x$spec$callback$layers$lname <- ref_layer
+
   callback <- handle_selection_callback(callback, fig$x$spec$callback$layers)
 
   cb_id <- gen_id(fig, c(did, "SelectionCallback",

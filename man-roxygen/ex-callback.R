@@ -106,7 +106,6 @@ figure(tools = "box_select") %>%
 
 \dontrun{
 library("shiny")
-library("rbokeh")
 dat <- data.frame(x = rnorm(10), y = rnorm(10))
 
 ui <- fluidPage(
@@ -130,11 +129,13 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$rbokeh <- renderRbokeh({
-    figure() %>% ly_points(x = x, y = y, data = dat,
-      hover = list(x, y), lname = "points") %>%
-      tool_hover(shiny_callback("hover_info"), "points") %>%
-      tool_tap(shiny_callback("tap_info"), "points") %>%
-      tool_box_select(shiny_callback("selection_info"), "points") %>%
+    p <- figure() %>% ly_points(Sepal.Length, Sepal.Width, glyph = Species,
+      color = Species, data = iris, hover = iris, lname = "points") %>%
+      tool_hover(shiny_callback("hover_info"), "points_1") %>%
+      tool_tap(shiny_callback("tap_info"), "points_1") %>%
+      tool_tap(shiny_callback("tap_info"), "points_2") %>%
+      tool_tap(shiny_callback("tap_info"), "points_3") %>%
+      tool_box_select(shiny_callback("selection_info"), "points_1") %>%
       x_range(callback = shiny_callback("x_range")) %>%
       y_range(callback = shiny_callback("y_range"))
   })

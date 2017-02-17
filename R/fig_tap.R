@@ -45,6 +45,8 @@ add_tap_callback <- function(fig, callback, ref_layer) {
 
   tap_model <- tap_model(tap_id, fig$x$spec$ref, renderer_ref)
 
+  fig$x$spec$callback$layers$lname <- ref_layer
+
   callback <- handle_tap_callback(callback, fig$x$spec$callback$layers)
 
   cb_id <- gen_id(fig, c(renderer_ref$id, "TapCallback",

@@ -10,8 +10,13 @@ customjs_model <- function(type = "CustomJS", id, code, args) {
 # translate a vector of lnames to a list of refs
 # that will be made available inside custom callback
 callback_lname2args <- function(lnames, fig_refs) {
+  lname <- fig_refs$lname
+  if (!is.null(lname))
+    fig_refs$lname <- NULL
   fig_refs <- fig_refs[lnames]
-  unlist(unname(fig_refs), recursive = FALSE)
+  res <- unlist(unname(fig_refs), recursive = FALSE)
+  res$lname <- lname
+  res
 }
 
 #' Specify a Shiny callback
@@ -82,7 +87,7 @@ handle_selection_callback <- function(x, args)
 ## console_callback
 ##---------------------------------------------------------
 
-handle_range_callback.consoleCallback <- function(x, fig_refs) {
+handle_range_callback.consoleCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = "
 if(range.factors) {
@@ -94,7 +99,7 @@ if(range.factors) {
   )
 }
 
-handle_tap_callback.consoleCallback <- function(x, fig_refs) {
+handle_tap_callback.consoleCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = "
 console.log('cb_data:')
@@ -105,7 +110,7 @@ console.log(cb_obj)",
   )
 }
 
-handle_hover_callback.consoleCallback <- function(x, fig_refs) {
+handle_hover_callback.consoleCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = "
 if(cb_data.index['1d'].indices.length > 0) {
@@ -118,7 +123,7 @@ if(cb_data.index['1d'].indices.length > 0) {
   )
 }
 
-handle_selection_callback.consoleCallback <- function(x, fig_refs) {
+handle_selection_callback.consoleCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = "
 if(cb_obj.get('selected')['1d'].indices.length > 0) {
@@ -134,19 +139,19 @@ if(cb_obj.get('selected')['1d'].indices.length > 0) {
 ## custom callback
 ##---------------------------------------------------------
 
-handle_range_callback.customCallback <- function(x, fig_refs)
+handle_range_callback.customCallback <- function(x, fig_refs, lname = NULL)
   handle_custom_callback(x, fig_refs)
 
-handle_hover_callback.customCallback <- function(x, fig_refs)
+handle_hover_callback.customCallback <- function(x, fig_refs, lname = NULL)
   handle_custom_callback(x, fig_refs)
 
-handle_tap_callback.customCallback <- function(x, fig_refs)
+handle_tap_callback.customCallback <- function(x, fig_refs, lname = NULL)
   handle_custom_callback(x, fig_refs)
 
-handle_selection_callback.customCallback <- function(x, fig_refs)
+handle_selection_callback.customCallback <- function(x, fig_refs, lname = NULL)
   handle_custom_callback(x, fig_refs)
 
-handle_custom_callback <- function(x, fig_refs) {
+handle_custom_callback <- function(x, fig_refs, lname = NULL) {
   x$args <- c(x$args, callback_lname2args(x$lnames, fig_refs))
   x
 }
@@ -154,10 +159,10 @@ handle_custom_callback <- function(x, fig_refs) {
 ## debug callback
 ##---------------------------------------------------------
 
-handle_range_callback.debugCallback <- function(x, fig_refs)
+handle_range_callback.debugCallback <- function(x, fig_refs, lname = NULL)
   handle_debug_callback(x, fig_refs)
 
-handle_hover_callback.debugCallback <- function(x, fig_refs) {
+handle_hover_callback.debugCallback <- function(x, fig_refs, lname = NULL) {
   x$args <- c(x$args, callback_lname2args(x$lnames, fig_refs))
   x$code <- "
 if(cb_data.index['1d'].indices.length > 0) {
@@ -166,10 +171,10 @@ if(cb_data.index['1d'].indices.length > 0) {
   x
 }
 
-handle_tap_callback.debugCallback <- function(x, fig_refs)
+handle_tap_callback.debugCallback <- function(x, fig_refs, lname = NULL)
   handle_debug_callback(x, fig_refs)
 
-handle_selection_callback.debugCallback <- function(x, fig_refs) {
+handle_selection_callback.debugCallback <- function(x, fig_refs, lname = NULL) {
   x$args <- c(x$args, callback_lname2args(x$lnames, fig_refs))
   x$code <- "
 if(cb_obj.get('selected')['1d'].indices.length > 0) {
@@ -178,7 +183,7 @@ if(cb_obj.get('selected')['1d'].indices.length > 0) {
   x
 }
 
-handle_debug_callback <- function(x, fig_refs) {
+handle_debug_callback <- function(x, fig_refs, lname = NULL) {
   x$args <- c(x$args, callback_lname2args(x$lnames, fig_refs))
   x
 }
@@ -187,19 +192,19 @@ handle_debug_callback <- function(x, fig_refs) {
 ## character callback
 ##---------------------------------------------------------
 
-handle_range_callback.character <- function(x, fig_refs)
+handle_range_callback.character <- function(x, fig_refs, lname = NULL)
   handle_character_callback(x, fig_refs)
 
-handle_hover_callback.character <- function(x, fig_refs)
+handle_hover_callback.character <- function(x, fig_refs, lname = NULL)
   handle_character_callback(x, fig_refs)
 
-handle_tap_callback.character <- function(x, fig_refs)
+handle_tap_callback.character <- function(x, fig_refs, lname = NULL)
   handle_character_callback(x, fig_refs)
 
-handle_selection_callback.character <- function(x, fig_refs)
+handle_selection_callback.character <- function(x, fig_refs, lname = NULL)
   handle_character_callback(x, fig_refs)
 
-handle_character_callback <- function(x, fig_refs) {
+handle_character_callback <- function(x, fig_refs, lname = NULL) {
   list(
     code = x,
     args = list()
@@ -209,7 +214,7 @@ handle_character_callback <- function(x, fig_refs) {
 ## shiny callback
 ##---------------------------------------------------------
 
-handle_range_callback.shinyCallback <- function(x, fig_refs) {
+handle_range_callback.shinyCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = sprintf("
 if (HTMLWidgets.shinyMode) {
@@ -221,7 +226,7 @@ if (HTMLWidgets.shinyMode) {
   )
 }
 
-handle_tap_callback.shinyCallback <- function(x, fig_refs) {
+handle_tap_callback.shinyCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = sprintf("
 if (HTMLWidgets.shinyMode) {
@@ -237,14 +242,21 @@ if (HTMLWidgets.shinyMode) {
   //     }
   //   }
   // }
-  Shiny.onInputChange('%s', cb_obj.get('selected')['1d'].indices);
+
+  var sel_idx = cb_obj.attributes.selected['1d'].indices;
+  var idx = [];
+  for (var i = 0; i < sel_idx.length; i++) {
+    idx.push(cb_obj.attributes.data['__index'][sel_idx[i]]);
+  }
+
+  Shiny.onInputChange('%s', idx);
 }
 ", as.character(x$id)),
     args = c(x$args, callback_lname2args(x$lnames, fig_refs))
   )
 }
 
-handle_hover_callback.shinyCallback <- function(x, fig_refs) {
+handle_hover_callback.shinyCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = sprintf("
 if (HTMLWidgets.shinyMode) {
@@ -256,7 +268,7 @@ if (HTMLWidgets.shinyMode) {
   )
 }
 
-handle_selection_callback.shinyCallback <- function(x, fig_refs) {
+handle_selection_callback.shinyCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = sprintf("
 Shiny.onInputChange('%s', cb_obj.get('selected')['1d'].indices);
@@ -268,19 +280,19 @@ Shiny.onInputChange('%s', cb_obj.get('selected')['1d'].indices);
 ## default methods
 ##---------------------------------------------------------
 
-handle_tap_callback.default <- function(x, fig_refs) {
+handle_tap_callback.default <- function(x, fig_refs, lname = NULL) {
   message("url callback not recognized - ignoring")
 }
 
-handle_hover_callback.default <- function(x, fig_refs) {
+handle_hover_callback.default <- function(x, fig_refs, lname = NULL) {
   message("hover callback not recognized - ignoring")
 }
 
-handle_range_callback.default <- function(x, fig_refs) {
+handle_range_callback.default <- function(x, fig_refs, lname = NULL) {
   message("range callback not recognized - ignoring")
 }
 
-handle_selection_callback.default <- function(x, fig_refs) {
+handle_selection_callback.default <- function(x, fig_refs, lname = NULL) {
   message("selection callback not recognized - ignoring")
 }
 

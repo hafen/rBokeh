@@ -49,6 +49,8 @@ add_hover_callback <- function(fig, callback, ref_layer) {
 
   hov_model <- hover_model(hov_id, fig$x$spec$ref, renderer_ref, tooltips = NA)
 
+  fig$x$spec$callback$layers$lname <- ref_layer
+
   callback <- handle_hover_callback(callback, fig$x$spec$callback$layers)
 
   cb_id <- gen_id(fig, c(renderer_ref$id, "HoverCallback",

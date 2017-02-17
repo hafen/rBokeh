@@ -56,6 +56,7 @@ update_range <- function(fig, axis = "x", dat = NULL, callback = NULL) {
       callback <- structure(list(code = callback, args = NULL, lnames = NULL),
         class = "customCallback")
     callback$args <- c(callback$args, list(range = model$ref))
+
     callback <- handle_range_callback(callback, fig$x$spec$callback$layers)
     if (!is.null(callback)) {
       cb_id <- gen_id(fig, c(paste0(range_name, "_callback"),

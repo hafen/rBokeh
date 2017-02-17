@@ -78,6 +78,8 @@ ly_points <- function(
     args$params$glyph <- factor(args$params$glyph)
   }
 
+  needs_lname <- length(args$info$lname) == 1
+
   # split data up for each glyph
   split_list <- split(seq_along(args$params$glyph), args$params$glyph, drop = TRUE)
   sln <- length(split_list)
@@ -107,6 +109,9 @@ ly_points <- function(
 
     axis_type_range <- get_glyph_axis_type_range(arg_obj$data$x,
       arg_obj$data$y, glyph = arg_obj$params$glyph)
+
+    if (needs_lname && sln > 1)
+      arg_obj$info$lname <- paste0(args$info$lname, "_", ii)
 
     fig <- make_glyph(
       fig, arg_obj$params$glyph, lname = arg_obj$info$lname, lgroup = arg_obj$info$lgroup,
