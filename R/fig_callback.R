@@ -260,7 +260,10 @@ handle_hover_callback.shinyCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = sprintf("
 if (HTMLWidgets.shinyMode) {
-  var dat = {index: cb_data.index, geom: cb_data.geometry}
+  var dat = {
+    index: cb_obj.attributes.data['__index'][cb_data.index],
+    geom: cb_data.geometry
+  }
   Shiny.onInputChange('%s', dat);
 }
 ", as.character(x$id)),
@@ -271,7 +274,14 @@ if (HTMLWidgets.shinyMode) {
 handle_selection_callback.shinyCallback <- function(x, fig_refs, lname = NULL) {
   list(
     code = sprintf("
-Shiny.onInputChange('%s', cb_obj.get('selected')['1d'].indices);
+if (HTMLWidgets.shinyMode) {
+  var sel_idx = cb_obj.attributes.selected['1d'].indices;
+  var idx = [];
+  for (var i = 0; i < sel_idx.length; i++) {
+    idx.push(cb_obj.attributes.data['__index'][sel_idx[i]]);
+  }
+  Shiny.onInputChange('%s', idx);
+}
 ", as.character(x$id)),
     args = c(x$args, callback_lname2args(x$lnames, fig_refs))
   )
