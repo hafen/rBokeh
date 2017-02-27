@@ -73,6 +73,9 @@ ly_text <- function(
 
   mc <- lapply(match.call(), deparse)
 
+  # no selection for text
+  args$data[["__index"]] <- NULL
+
   make_glyph(
     fig, type = "text",
     lname = args$info$lname, lgroup = args$info$lgroup,

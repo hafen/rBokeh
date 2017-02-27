@@ -371,7 +371,8 @@ sub_names <- function(
     ret$info[c("x_name", "y_name")] <- d2_and_names$xy_name
   }
 
-  ret$data[["__index"]] <- data[["__index"]]
+  if (any(sapply(ret$data, length) == nrow(data)))
+    ret$data[["__index"]] <- data[["__index"]]
   if (is.null(ret$data[["__index"]]))
     ret$data[["__index"]] <- seq_len(length(ret$data[[1]]))
 
