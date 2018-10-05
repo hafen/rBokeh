@@ -1,0 +1,45 @@
+.lazy-loading {
+  margin-left: 18px;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999px;
+  border-top: 5px solid rgba(192,192,192, 0.2);
+  border-right: 5px solid rgba(192,192,192, 0.2);
+  border-bottom: 5px solid rgba(192,192,192, 0.2);
+  border-left: 5px solid #c0c0c0;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: spinner 1.1s infinite linear;
+  animation: spinner 1.1s infinite linear;
+}
+.lazy-loading,
+.lazy-loading:after {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.lazy-loading-text {
+  opacity: 0.3;
+  font-size: 16px;
+}

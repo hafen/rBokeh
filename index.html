@@ -1,0 +1,745 @@
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc" />
+
+    <meta name="author" content="Ryan Hafen" />
+  
+  
+  <title>rbokeh</title>
+
+    <script src="index_files/jquery-1.11.3/jquery.min.js"></script>
+  <link href="index_files/bootstrap-3.3.2/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="index_files/bootstrap-3.3.2/js/bootstrap.min.js"></script>
+  <script src="index_files/bootstrap-3.3.2/shim/html5shiv.min.js"></script>
+  <script src="index_files/bootstrap-3.3.2/shim/respond.min.js"></script>
+  <link href="index_files/highlight-8.4/tomorrow.css" rel="stylesheet" />
+  <script src="index_files/highlight-8.4/highlight.pack.js"></script>
+  <link href="index_files/fontawesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+  <script src="index_files/stickykit-1.1.1/sticky-kit.min.js"></script>
+  <script src="index_files/jqueryeasing-1.3/jquery.easing.min.js"></script>
+  <link href="index_files/lazyload-0.1.0/lazyload.css" rel="stylesheet" />
+  <script src="index_files/lazyload-0.1.0/lazyload.js"></script>
+  <link href="index_files/packagedocs-0.0.1/pd.css" rel="stylesheet" />
+  <script src="index_files/packagedocs-0.0.1/pd.js"></script>
+  <script src="index_files/packagedocs-0.0.1/pd-sticky-toc.js"></script>
+  <script src="index_files/htmlwidgets-1.3/htmlwidgets.js"></script>
+  <link href="index_files/bokehjs-0.12.5/bokeh.min.css" rel="stylesheet" />
+  <link href="index_files/bokehjs-0.12.5/loader.css" rel="stylesheet" />
+  <script src="index_files/bokehjs-0.12.5/bokeh.min.js"></script>
+  <script src="index_files/rbokeh-binding-0.5.1/rbokeh.js"></script>
+  
+  
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+
+  
+  <header class="navbar navbar-white navbar-fixed-top" role="banner" id="header">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+                <a href="index.html" class="navbar-brand page-scroll">
+        rbokeh - R Interface for Bokeh
+        </a>
+      </div>
+            <nav class="collapse navbar-collapse" role="navigation">
+        <ul class="nav nav-pills pull-right">
+<li class="active">
+<a href='index.html'>Docs</a>
+</li>
+<li>
+<a href='rd.html'>Package Ref</a>
+</li>
+<li>
+<a href='https://github.com/bokeh/rbokeh'>Github <i class='fa fa-github'></i></a>
+</li>
+        </ul>
+      </nav>
+          </div>
+  </header>
+
+  <!-- Begin Body -->
+  <div class="container">
+    <div class="row">
+            <div class="col-md-3" id="sidebar-col">
+        <div id="toc">
+          <ul>
+          <li><a href="#background">Background</a></li>
+          <li><a href="#installation">Installation</a></li>
+          <li><a href="#preview">Preview</a></li>
+          <li><a href="#tutorial">Tutorial</a><ul>
+          <li><a href="#building-with-layers">Building with layers</a></li>
+          <li><a href="#specifying-data">Specifying data</a></li>
+          <li><a href="#hover">Hover</a></li>
+          <li><a href="#plot-attributes">Plot attributes</a></li>
+          <li><a href="#mapped-attributes">Mapped attributes</a></li>
+          <li><a href="#legends">Legends</a></li>
+          <li><a href="#axes">Axes</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#grids">Grids</a></li>
+          <li><a href="#themes">Themes</a></li>
+          <li><a href="#statistical-layers">Statistical layers</a></li>
+          </ul></li>
+          <li><a href="#design-dev">Design / Dev</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9" id="content-col">
+      
+<div id="content-top"></div>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p><a href="http://bokeh.pydata.org">Bokeh</a> is a visualization library that provides a flexible and powerful declarative framework for creating web-based plots. Bokeh renders plots using HTML canvas and provides many mechanisms for interactivity. Bokeh has interfaces in Python, Scala, Julia, and now R.</p>
+<p>The Bokeh library is written and maintained by the <a href="http://bokeh.pydata.org/en/latest/docs/contributing.html">Bokeh Core Team</a> consisting of several members of <a href="http://continuum.io">Continuum Analytics</a> and other members of the open source community. The rbokeh package is written and maintained by Ryan Hafen (<a href="https://twitter.com/hafenstats">@hafenstats</a>) with several <a href="https://github.com/bokeh/rbokeh/graphs/contributors">contributions from others</a>. <a href="https://github.com/bokeh/rbokeh/blob/master/CONTRIBUTING.md">Contributions are welcome</a>.</p>
+<p>If you find bugs or have issues, please file them on the <a href="https://github.com/bokeh/rbokeh/issues">github issue tracker</a> or hop on the <a href="https://groups.google.com/a/continuum.io/forum/#!forum/bokeh">Bokeh mailing list</a> and be sure tag your subject with [R].</p>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<p>The rbokeh package can be installed from CRAN:</p>
+<pre class="r"><code>install.packages(&quot;rbokeh&quot;)</code></pre>
+<pre class="r"><code>library(rbokeh)</code></pre>
+<p>Plots are constructed by initializing a <code>figure()</code> and then adding layers on top through various glyphs available in Bokeh, or abstractions of those glyphs that we have created for common use cases. The data input is typically <code>x</code> and <code>y</code>, and how they are specified is quite flexible (see examples below).</p>
+</div>
+<div id="preview" class="section level1">
+<h1>Preview</h1>
+<p>Before providing a tutorial, we first show several examples of plots created with rbokeh. This will both give a feel for what the syntax looks like and provide some motivation to go through the more procedural tutorial. We thought this would be a more enjoyable way to begin than looking at 50 different versions of a plot of the iris data with different parameter settings.</p>
+<p>Speaking of the iris data, our first plot:</p>
+<pre class="r"><code>p &lt;- figure() %&gt;%
+  ly_points(Sepal.Length, Sepal.Width, data = iris,
+    color = Species, glyph = Species,
+    hover = list(Sepal.Length, Sepal.Width))
+p</code></pre>
+<div id="htmlwidget-87cf374a3f57d4db239e" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-87cf374a3f57d4db239e" id="htmlwidget-87cf374a3f57d4db239e-script"></script>
+<p>Here since we are specifying color and glyph by <code>Species</code>, a legend is automatically created and the points are colored according to the default color scheme. You can hover over points to see the tooltips we added with the <code>hover</code> argument. You can also play around with the other interactive components such as panning and zooming.</p>
+<p>We can also specify legend entries manually:</p>
+<pre class="r"><code>z &lt;- lm(dist ~ speed, data = cars)
+p &lt;- figure(width = 600, height = 600) %&gt;%
+  ly_points(cars, hover = cars) %&gt;%
+  ly_lines(lowess(cars), legend = &quot;lowess&quot;) %&gt;%
+  ly_abline(z, type = 2, legend = &quot;lm&quot;)
+p</code></pre>
+<div id="htmlwidget-953b80fc2b972212ba46" style="width:600px;height:600px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-953b80fc2b972212ba46" id="htmlwidget-953b80fc2b972212ba46-script"></script>
+<p>Histogram of old faithful geyser data with density overplotted:</p>
+<pre class="r"><code>h &lt;- figure(width = 600, height = 400) %&gt;%
+  ly_hist(eruptions, data = faithful, breaks = 40, freq = FALSE) %&gt;%
+  ly_density(eruptions, data = faithful)
+h</code></pre>
+<div id="htmlwidget-629de7db9221ffd551bb" style="width:600px;height:400px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-629de7db9221ffd551bb" id="htmlwidget-629de7db9221ffd551bb-script"></script>
+<p>Periodic table of the elements with additional info on hover:</p>
+<pre class="r"><code># prepare data
+elements &lt;- subset(elements, !is.na(group))
+elements$group &lt;- as.character(elements$group)
+elements$period &lt;- as.character(elements$period)
+
+# add colors for groups
+metals &lt;- c(&quot;alkali metal&quot;, &quot;alkaline earth metal&quot;, &quot;halogen&quot;,
+  &quot;metal&quot;, &quot;metalloid&quot;, &quot;noble gas&quot;, &quot;nonmetal&quot;, &quot;transition metal&quot;)
+colors &lt;- c(&quot;#a6cee3&quot;, &quot;#1f78b4&quot;, &quot;#fdbf6f&quot;, &quot;#b2df8a&quot;, &quot;#33a02c&quot;,
+  &quot;#bbbb88&quot;, &quot;#baa2a6&quot;, &quot;#e08e79&quot;)
+elements$color &lt;- colors[match(elements$metal, metals)]
+elements$type &lt;- elements$metal
+
+# make coordinates for labels
+elements$symx &lt;- paste(elements$group, &quot;:0.1&quot;, sep = &quot;&quot;)
+elements$numbery &lt;- paste(elements$period, &quot;:0.8&quot;, sep = &quot;&quot;)
+elements$massy &lt;- paste(elements$period, &quot;:0.15&quot;, sep = &quot;&quot;)
+elements$namey &lt;- paste(elements$period, &quot;:0.3&quot;, sep = &quot;&quot;)
+
+# create figure
+p &lt;- figure(title = &quot;Periodic Table&quot;, tools = c(&quot;resize&quot;, &quot;hover&quot;),
+  ylim = as.character(c(7:1)), xlim = as.character(1:18),
+  xgrid = FALSE, ygrid = FALSE, xlab = &quot;&quot;, ylab = &quot;&quot;,
+  height = 445, width = 800) %&gt;%
+
+# plot rectangles
+ly_crect(group, period, data = elements, 0.9, 0.9,
+  fill_color = color, line_color = color, fill_alpha = 0.6,
+  hover = list(name, atomic.number, type, atomic.mass,
+    electronic.configuration)) %&gt;%
+
+# add symbol text
+ly_text(symx, period, text = symbol, data = elements,
+  font_style = &quot;bold&quot;, font_size = &quot;10pt&quot;,
+  align = &quot;left&quot;, baseline = &quot;middle&quot;) %&gt;%
+
+# add atomic number text
+ly_text(symx, numbery, text = atomic.number, data = elements,
+  font_size = &quot;6pt&quot;, align = &quot;left&quot;, baseline = &quot;middle&quot;) %&gt;%
+
+# add name text
+ly_text(symx, namey, text = name, data = elements,
+  font_size = &quot;4pt&quot;, align = &quot;left&quot;, baseline = &quot;middle&quot;) %&gt;%
+
+# add atomic mass text
+ly_text(symx, massy, text = atomic.mass, data = elements,
+  font_size = &quot;4pt&quot;, align = &quot;left&quot;, baseline = &quot;middle&quot;)
+
+p</code></pre>
+<div id="htmlwidget-65cecbc8bb80b29667da" style="width:800px;height:445px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-65cecbc8bb80b29667da" id="htmlwidget-65cecbc8bb80b29667da-script"></script>
+<p>Crude map of the world with capital cities:</p>
+<pre class="r"><code>library(maps)
+data(world.cities)
+caps &lt;- subset(world.cities, capital == 1)
+caps$population &lt;- prettyNum(caps$pop, big.mark = &quot;,&quot;)
+figure(width = 800, height = 450, padding_factor = 0) %&gt;%
+  ly_map(&quot;world&quot;, col = &quot;gray&quot;) %&gt;%
+  ly_points(long, lat, data = caps, size = 5,
+    hover = c(name, country.etc, population))</code></pre>
+<div id="htmlwidget-703ba5e22e76b6874aff" style="width:800px;height:450px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-703ba5e22e76b6874aff" id="htmlwidget-703ba5e22e76b6874aff-script"></script>
+<p>Hover for population info, etc.</p>
+<p>Google map plot:</p>
+<pre class="r"><code>orstationc &lt;- read.csv(&quot;http://geog.uoregon.edu/bartlein/old_courses/geog414s05/data/orstationc.csv&quot;)
+
+gmap(lat = 44.1, lng = -120.767, zoom = 6, width = 700, height = 600) %&gt;%
+  ly_points(lon, lat, data = orstationc, alpha = 0.8, col = &quot;red&quot;,
+    hover = c(station, Name, elev, tann))</code></pre>
+<div id="htmlwidget-047efa1ff2f0fa1e23df" style="width:700px;height:600px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-047efa1ff2f0fa1e23df" id="htmlwidget-047efa1ff2f0fa1e23df-script"></script>
+<p>Note: for this to work you need to get a Google Maps API key and either provide it as an argument to <code>gmap()</code> or set it as an option in your R session <code>options(GMAP_API_KEY=xxx)</code> or set it as a system environment variable, <code>GMAP_API_KEY</code>.</p>
+<p>Time series plot of daily airline flights with hover and vertical line:</p>
+<pre class="r"><code>p &lt;- figure(width = 800, height = 400) %&gt;%
+  ly_lines(date, Freq, data = flightfreq, alpha = 0.3) %&gt;%
+  ly_points(date, Freq, data = flightfreq,
+    hover = list(date, Freq, dow), size = 5) %&gt;%
+  ly_abline(v = as.Date(&quot;2001-09-11&quot;))
+p</code></pre>
+<div id="htmlwidget-d22b30099a835016e504" style="width:800px;height:400px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-d22b30099a835016e504" id="htmlwidget-d22b30099a835016e504-script"></script>
+<p>Note that using your scroll wheel over the x or y axis activates a zoom in the dimension of the axis you are hovered over.</p>
+<p>Scatterplot matrix of iris data with linked panning, zooming, and brushing (try the pan, zoom, and box_select tools in the figure below):</p>
+<pre class="r"><code>tools &lt;- c(&quot;pan&quot;, &quot;wheel_zoom&quot;, &quot;box_zoom&quot;, &quot;box_select&quot;, &quot;reset&quot;)
+nms &lt;- expand.grid(names(iris)[1:4], rev(names(iris)[1:4]), stringsAsFactors = FALSE)
+splom_list &lt;- vector(&quot;list&quot;, 16)
+for(ii in seq_len(nrow(nms))) {
+  splom_list[[ii]] &lt;- figure(width = 200, height = 200, tools = tools,
+    xlab = nms$Var1[ii], ylab = nms$Var2[ii]) %&gt;%
+    ly_points(nms$Var1[ii], nms$Var2[ii], data = iris,
+      color = Species, size = 5, legend = FALSE)
+}
+grid_plot(splom_list, ncol = 4, same_axes = TRUE, link_data = TRUE)</code></pre>
+<div id="htmlwidget-4e14e82144b7844317d5" style="width:800px;height:800px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-4e14e82144b7844317d5" id="htmlwidget-4e14e82144b7844317d5-script"></script>
+<p>A hexbin plot:</p>
+<pre class="r"><code>figure() %&gt;% ly_hexbin(rnorm(10000), rnorm(10000))</code></pre>
+<div id="htmlwidget-15a5cfb181d1472300ff" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-15a5cfb181d1472300ff" id="htmlwidget-15a5cfb181d1472300ff-script"></script>
+<p>Hovering will show the counts in the hexagon bin.</p>
+<p>Here’s a combination of many layers using hexbins to show the density of the fielding location of all doubles in the 2014 MLB season, inspired by <a href="https://baseballwithr.wordpress.com/2014/06/06/creating-hexbin-plots/">this</a>:</p>
+<pre class="r"><code>doubles &lt;- read.csv(&quot;https://gist.githubusercontent.com/hafen/77f25b556725b3d0066b/raw/10f0e811f09f2b9f0f9ccfb542e296dfac2761d4/doubles.csv&quot;)
+
+ly_baseball &lt;- function(x) {
+  base_x &lt;- c(90 * cos(pi/4), 0, 90 * cos(3 * pi/4), 0)
+  base_y &lt;- c(90 * cos(pi/4), sqrt(90^2 + 90^2), 90 * sin(pi/4), 0)
+  distarc_x &lt;- lapply(c(2:4) * 100, function(a)
+    seq(a * cos(3 * pi/4), a * cos(pi/4), length = 200))
+  distarc_y &lt;- lapply(distarc_x, function(x)
+    sqrt((x[1]/cos(3 * pi/4))^2 - x^2))
+
+  x %&gt;%
+    ## boundary
+    ly_segments(c(0, 0), c(0, 0), c(-300, 300), c(300, 300), alpha = 0.4) %&gt;%
+    ## bases
+    ly_crect(base_x, base_y, width = 10, height = 10,
+      angle = 45*pi/180, color = &quot;black&quot;, alpha = 0.4) %&gt;%
+    ## infield/outfield boundary
+    ly_curve(60.5 + sqrt(95^2 - x^2),
+      from = base_x[3] - 26, to = base_x[1] + 26, alpha = 0.4) %&gt;%
+    ## distance arcs (ly_arc should work here and would be much simpler but doesn&#39;t)
+    ly_multi_line(distarc_x, distarc_y, alpha = 0.4)
+}
+
+figure(xgrid = FALSE, ygrid = FALSE, width = 630, height = 540,
+  xlab = &quot;Horizontal distance from home plate (ft.)&quot;,
+  ylab = &quot;Vertical distance from home plate (ft.)&quot;) %&gt;%
+  ly_baseball() %&gt;%
+  ly_hexbin(doubles, xbins = 50, shape = 0.77, alpha = 0.75, palette = &quot;Spectral10&quot;)</code></pre>
+<div id="htmlwidget-48d5d1e5270abe972479" style="width:630px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-48d5d1e5270abe972479" id="htmlwidget-48d5d1e5270abe972479-script"></script>
+<p>Image plot of Maunga Whau volcano topography with contour line:</p>
+<pre class="r"><code>p &lt;- figure(title = &quot;Volcano&quot;, padding_factor = 0) %&gt;%
+  ly_image(volcano) %&gt;%
+  ly_contour(volcano)
+p</code></pre>
+<div id="htmlwidget-a82c4f089b1e0ec730ce" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-a82c4f089b1e0ec730ce" id="htmlwidget-a82c4f089b1e0ec730ce-script"></script>
+<p>Log axes:</p>
+<pre class="r"><code># get data on number of CRAN packages over time (from Ecdat)
+packages &lt;- read.csv(&quot;https://gist.githubusercontent.com/hafen/117d731ad93c03bd5ec0079cbb38ab94/raw/04e7dc3aed1c6f5d82b1bb21460c0b589ef09d96/rpackages.csv&quot;,
+  colClasses = c(&quot;numeric&quot;, &quot;Date&quot;, &quot;integer&quot;, &quot;character&quot;))
+
+figure(data = packages) %&gt;%
+  ly_points(Date, Packages, hover = c(Version, Date, Packages)) %&gt;%
+  y_axis(log = TRUE)</code></pre>
+<div id="htmlwidget-16c562c832da4396e096" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-16c562c832da4396e096" id="htmlwidget-16c562c832da4396e096-script"></script>
+<p>Embedding images in a figure:</p>
+<pre class="r"><code>url &lt;- c(&quot;http://bokeh.pydata.org/en/latest/_static/images/logo.png&quot;,
+  &quot;http://developer.r-project.org/Logo/Rlogo-4.png&quot;)
+
+ss &lt;- seq(0, 2*pi, length = 13)[-1]
+ws &lt;- runif(12, 2.5, 5) * rep(c(1, 0.8), 6)
+
+imgdat &lt;- data.frame(
+  x = sin(ss) * 10, y = cos(ss) * 10,
+  w = ws, h = ws * rep(c(1, 0.76), 6),
+  url = rep(url, 6)
+)
+
+p &lt;- figure(xlab = &quot;x&quot;, ylab = &quot;y&quot;, height = 450) %&gt;%
+  ly_image_url(x, y, w = w, h = h, image_url = url, data = imgdat,
+    anchor = &quot;center&quot;) %&gt;%
+  ly_lines(sin(c(ss, ss[1])) * 10, cos(c(ss, ss[1])) * 10,
+    width = 15, alpha = 0.1)
+p</code></pre>
+<div id="htmlwidget-943218844d6819cadc11" style="width:500px;height:450px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-943218844d6819cadc11" id="htmlwidget-943218844d6819cadc11-script"></script>
+<p>Boxplot of voice data:</p>
+<pre class="r"><code>figure(ylab = &quot;Height (inches)&quot;, width = 600) %&gt;%
+  ly_boxplot(voice.part, height, data = lattice::singer)</code></pre>
+<div id="htmlwidget-19a785dba1c1d9fb9423" style="width:600px;height:500px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-19a785dba1c1d9fb9423" id="htmlwidget-19a785dba1c1d9fb9423-script"></script>
+<p>Quantile plot with iris data:</p>
+<pre class="r"><code>figure(legend_location = &quot;top_left&quot;) %&gt;%
+  ly_quantile(Sepal.Length, group = Species, data = iris)</code></pre>
+<div id="htmlwidget-704085dbe75cfed6eba6" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-704085dbe75cfed6eba6" id="htmlwidget-704085dbe75cfed6eba6-script"></script>
+<p>Washington cancer rates:</p>
+<pre class="r"><code>wa_cancer &lt;- droplevels(subset(latticeExtra::USCancerRates, state == &quot;Washington&quot;))
+## y axis sorted by male rate
+ylim &lt;- levels(with(wa_cancer, reorder(county, rate.male)))
+
+figure(ylim = ylim, width = 700, height = 600, tools = &quot;&quot;) %&gt;%
+  ly_segments(LCL95.male, county, UCL95.male,
+    county, data = wa_cancer, color = NULL, width = 2) %&gt;%
+  ly_points(rate.male, county, glyph = 16, data = wa_cancer)</code></pre>
+<div id="htmlwidget-f5a154af7037580bb084" style="width:700px;height:600px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-f5a154af7037580bb084" id="htmlwidget-f5a154af7037580bb084-script"></script>
+</div>
+<div id="tutorial" class="section level1">
+<h1>Tutorial</h1>
+<div id="building-with-layers" class="section level2">
+<h2>Building with layers</h2>
+<p>Plots in rbokeh are build by layering plot elements, called glyphs, to create the desired visualization. This is a familiar notion to those who have experience with ggplot2 geoms, ggvis layers, or even base R graphics functions <code>points()</code>, <code>lines()</code>, etc.</p>
+<p>To initialize a Bokeh figure, we call</p>
+<p>There are several arguments to <code>figure()</code> which control things like the width, height, and axes of the figure. We now have a figure object, <code>p</code>, which we are ready to add layers to.</p>
+<p>We can add a layer to the figure by calling a number of layer functions. All layer functions conveniently start with the <code>ly_</code> prefix, and a full list can be found in the <a href="rd.html">function reference</a>. The first argument of a layer function is always the figure to be modified. Following this, most layer functions take as next arguments <code>x</code> and <code>y</code> to specify the x and y location of the placement of the glyphs, followed by several arguments for specifying attributes of the glyphs. All layer functions return a figure object, which can be passed to further layer functions.</p>
+<p>For example, suppose we would like to plot the distance to stop vs. speed from the <code>cars</code> data. We can build on the object <code>p</code> that we initialized above:</p>
+<pre class="r"><code>p &lt;- ly_points(p, cars$speed, cars$dist)</code></pre>
+<p>We can now view the figure by simply typing <code>p</code>:</p>
+<pre class="r"><code>p</code></pre>
+<div id="htmlwidget-aa3ad55e27f1966f5b24" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-aa3ad55e27f1966f5b24" id="htmlwidget-aa3ad55e27f1966f5b24-script"></script>
+<p>Note that since we didn’t specify x and y axis labels (which can be done with <code>xlab</code> and <code>ylab</code> in <code>figure()</code>), they were chosen for us based on the inputs.</p>
+<p>Also note that when we print the figure it tells us that we did not specify the <code>xlim</code> and <code>ylim</code> arguments and that it is computing limits for us. By default, the limits are chosen so that all glyphs can be seen in the plot.</p>
+<p>Since layer functions return figure objects, we can make use of pipes from the <code>magrittr</code> package to string function calls together:</p>
+<pre class="r"><code>p &lt;- figure() %&gt;%
+  ly_points(cars$speed, cars$dist)</code></pre>
+<p>To illustrate adding another layer to the figure, suppose we would like to add a line to the figure with an intercept of -17.6 and slope of 3.9. We can do this with the <code>ly_abline()</code> layer function. We can modify the existing figure with the following:</p>
+<pre class="r"><code>p &lt;- p %&gt;% ly_abline(-17.6, 3.9)</code></pre>
+<p>Or if we were to have built it up in one step, it would look like this:</p>
+<pre class="r"><code>p &lt;- figure() %&gt;%
+  ly_points(cars$speed, cars$dist) %&gt;%
+  ly_abline(-17.6, 3.9)
+p</code></pre>
+<div id="htmlwidget-53031ab359f43353f94f" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-53031ab359f43353f94f" id="htmlwidget-53031ab359f43353f94f-script"></script>
+<p>We can continue to add layers as we wish.</p>
+</div>
+<div id="specifying-data" class="section level2">
+<h2>Specifying data</h2>
+<p>In the previous examples, we passed vectors of data to <code>x</code> and <code>y</code>. As an alternative, we can pass a data frame to layer functions through the <code>data</code> argument and then reference names of the data frame to pass to <code>x</code>, <code>y</code>, and other plot attributes, using <a href="http://adv-r.had.co.nz/Computing-on-the-language.html">non-standard evaluation</a>.</p>
+<p>For example</p>
+<pre class="r"><code>p &lt;- figure() %&gt;%
+  ly_points(speed, dist, data = cars)</code></pre>
+<p>Or</p>
+<pre class="r"><code>p &lt;- figure() %&gt;%
+  ly_points(speed, dist^2, data = cars)</code></pre>
+<p>For those familiar with ggplot2, unlike ggplot2, we do not attach a default data set when we call <code>figure()</code>, but data is explicitly specified for each layer.</p>
+<p>We will see in the following sections how we can also reference variables in the <code>data</code> argument for other attributes as well.</p>
+<p>There are a few other conveniences for specifying data with plots that are similar to other R plotting systems. For example, if we only pass one vector of data, the x-axis will become an index and the y-axis will be vector.</p>
+<pre class="r"><code>p &lt;- figure() %&gt;%
+  ly_points(speed, data = cars)</code></pre>
+<p>Or if we only pass one vector and it is a list or data frame, the second element will be plotted against the first element.</p>
+<pre class="r"><code>p &lt;- figure() %&gt;%
+  ly_points(cars)</code></pre>
+</div>
+<div id="hover" class="section level2">
+<h2>Hover</h2>
+<p>Now is a good time to introduce hover capabilities in rbokeh. Most layer functions (those that render shapes and not lines), have a <code>hover</code> argument. This argument can be a data frame with the same number of rows as the length of <code>x</code> and <code>y</code>, or a vector of names in the <code>data</code> argument. When specified, the hover tool will be activated and when a point is hovered over in the plot, a list of the specified variable values for that point will be shown. For example, with the cars data, suppose we would like to see the actual data point values:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(speed, dist, data = cars, hover = c(speed, dist))</code></pre>
+<div id="htmlwidget-6d3682fa9abdff809797" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-6d3682fa9abdff809797" id="htmlwidget-6d3682fa9abdff809797-script"></script>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(speed, dist, data = cars, hover = &quot;This car was going @speed mph!&quot;)</code></pre>
+<div id="htmlwidget-6a0a2ab6d8d001c37edc" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-6a0a2ab6d8d001c37edc" id="htmlwidget-6a0a2ab6d8d001c37edc-script"></script>
+</div>
+<div id="plot-attributes" class="section level2">
+<h2>Plot attributes</h2>
+<p>Now that we can get data in and add layers, we want to control the aesthetic attributes of the glyphs being plotted. By default, attributes are chosen based on the currently selected theme. We will cover more on themes later, and for now use the default color theme.</p>
+<p>We can also explicitly specify attributes such as size, color, etc. for each layer. For example, suppose we want to color the glyphs in our <code>cars</code> plot red and have them 20 pixels in size:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(cars, color = &quot;red&quot;, size = 20)</code></pre>
+<div id="htmlwidget-c0afadd5cb4ea7c0f94c" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-c0afadd5cb4ea7c0f94c" id="htmlwidget-c0afadd5cb4ea7c0f94c-script"></script>
+<p>We can pass vectors of attributes as well:</p>
+<pre class="r"><code>n &lt;- nrow(cars)
+ramp &lt;- colorRampPalette(c(&quot;red&quot;, &quot;blue&quot;))(n)
+figure() %&gt;%
+  ly_points(cars, color = ramp, size = seq_len(n))</code></pre>
+<div id="htmlwidget-d2d6d8fff0fe360ab66a" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-d2d6d8fff0fe360ab66a" id="htmlwidget-d2d6d8fff0fe360ab66a-script"></script>
+<p>In the following section, “Mapped attributes”, we will see how we can specify attributes to be applied automatically based on different variables in our data.</p>
+<div id="line-and-fill-attributes" class="section level3">
+<h3>Line and fill attributes</h3>
+<p>Every layer function has either line attributes or line and fill attributes (except for <code>ly_text()</code>, which has text attributes). Which of these categories a glyph falls into is usually evident from the name of the layer function and is spelled out in the function reference.</p>
+<p>In the example above, the points in our plot have both line attributes (the outline of the circles) and fill attributes (the area inside the circles). But we specified color with a single argument <code>color</code>. <code>color</code> convenience argument, which we will provide more detail about below, but we can have finer control over line and fill attributes. The following are the available line and fill attributes we can specify:</p>
+<table>
+<colgroup>
+<col width="51%" />
+<col width="48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>attribute</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>fill_color</code></td>
+<td>color to use to fill the glyph with - a hex code (with no alpha) or any of the 147 named CSS colors, e.g ‘green’, ‘indigo’</td>
+</tr>
+<tr class="even">
+<td><code>fill_alpha</code></td>
+<td>transparency value between 0 (transparent) and 1 (opaque)</td>
+</tr>
+<tr class="odd">
+<td><code>line_color</code></td>
+<td>color to use to stroke lines with - a hex code (with no alpha) or any of the 147 named CSS colors, e.g ‘green’, ‘indigo’</td>
+</tr>
+<tr class="even">
+<td><code>line_width</code></td>
+<td>stroke width in units of pixels</td>
+</tr>
+<tr class="odd">
+<td><code>line_alpha</code></td>
+<td>transparency value between 0 (transparent) and 1 (opaque)</td>
+</tr>
+<tr class="even">
+<td><code>line_join</code></td>
+<td>how path segments should be joined together ‘miter’ ‘round’ ‘bevel’</td>
+</tr>
+<tr class="odd">
+<td><code>line_cap</code></td>
+<td>how path segments should be terminated ‘butt’ ‘round’ ‘square’</td>
+</tr>
+<tr class="even">
+<td><code>line_dash</code></td>
+<td>array of integer pixel distances that describe the on-off pattern of dashing to use</td>
+</tr>
+</tbody>
+</table>
+<p>For example, suppose we want the fill to be blue and the line to be black:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(cars, fill_color = &quot;blue&quot;, line_color = &quot;black&quot;)</code></pre>
+<div id="htmlwidget-89616edc09debe91e151" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-89616edc09debe91e151" id="htmlwidget-89616edc09debe91e151-script"></script>
+</div>
+<div id="convenience-line-and-fill-attributes" class="section level3">
+<h3>Convenience line and fill attributes</h3>
+<p>We provide convenience arguments <code>color</code> and <code>alpha</code> to deal with both line and/or fill attributes. How they behave differs depending on what attributes the glyph has.</p>
+<div id="glyphs-with-line-and-fill-attributes" class="section level4">
+<h4>Glyphs with line and fill attributes</h4>
+<p>When dealing with glyphs that have both line and color attributes (like the plots we have created so far), when <code>color</code> is specified, this will be the color of both the line and the fill, with the alpha level of the fill reduced by 50%. When <code>alpha</code> is specified, this will be the alpha of the line, with the alpha of the fill being set to 50% of this value.</p>
+</div>
+<div id="glyphs-with-only-line-attributes" class="section level4">
+<h4>Glyphs with only line attributes</h4>
+<p>When using a glyph that only has line properties, <code>color</code> maps directly to <code>line_color</code> and is simply a convenience as the <code>line_</code> prefix is redundant, and similarly <code>alpha</code> maps directly to <code>line_alpha</code>Any attribute that starts with <code>line_</code> or <code>fill_</code> always overrides <code>color</code> and <code>alpha</code>.</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(cars) %&gt;%
+  ly_lines(lowess(cars), color = &quot;red&quot;, width = 2)</code></pre>
+<div id="htmlwidget-2407fa3917db8ceea392" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-2407fa3917db8ceea392" id="htmlwidget-2407fa3917db8ceea392-script"></script>
+</div>
+</div>
+<div id="the-glyph-attribute-in-ly_points" class="section level3">
+<h3>The <code>glyph</code> attribute in <code>ly_points()</code></h3>
+<p>Most of the attributes for different layer functions are self-explanatory from looking at the function reference, but there are a few that are worth spending some more time on. One is the <code>glyph</code> attribute in <code>ly_points()</code>. This is similar to the <code>pch</code> argument to base R’s <code>points()</code>.</p>
+<p>To see the avaialable possible values for <code>glyph</code>:</p>
+<pre class="r"><code>point_types()</code></pre>
+<div id="htmlwidget-6fa4cc3a2a7833325f9d" style="width:800px;height:450px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-6fa4cc3a2a7833325f9d" id="htmlwidget-6fa4cc3a2a7833325f9d-script"></script>
+<p>The named glyphs on rows 4 and 5 are called “markers” in Bokeh and are shown with their default rendering when <code>color</code> is “blue”. The numbered glyphs map closely to the possible values for <code>pch</code> in R’s <code>points()</code> function. When a numbered glyph is specified, fill and line attributes will be handled accordingly to get the desired effect.</p>
+<p>For example, let’s plot the cars data with <code>glyph = 12</code>:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(cars, glyph = 12)</code></pre>
+<div id="htmlwidget-ba8c8b87a08fd1b328a0" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-ba8c8b87a08fd1b328a0" id="htmlwidget-ba8c8b87a08fd1b328a0-script"></script>
+</div>
+<div id="the-type-attribute-in-ly_lines-and-friends" class="section level3">
+<h3>The <code>type</code> attribute in <code>ly_lines()</code> and friends</h3>
+<p>Similar to the <code>glyph</code> argument in <code>ly_points()</code>, there is a <code>type</code> argument in <code>ly_lines()</code> that maps to the <code>lty</code> argument in base R’s <code>lines()</code> function.</p>
+<p>For example:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_lines(lowess(cars), type = 2)</code></pre>
+<div id="htmlwidget-de6b5fcc9a3fb4c19806" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-de6b5fcc9a3fb4c19806" id="htmlwidget-de6b5fcc9a3fb4c19806-script"></script>
+<p>We encourage you to explore all the different layer functions and the available attributes. They are well-documented in the function reference and most have examples.</p>
+</div>
+</div>
+<div id="mapped-attributes" class="section level2">
+<h2>Mapped attributes</h2>
+<p>Often we want to control the behavior of glyph attributes based on other properties of the data. The rbokeh package borrows from the ideas of ggplot2’s <code>qplot()</code> to allow easy specification of variables to map to different attributes.</p>
+<p>For example, turning to the famous <code>iris</code> data set, suppose we want to plot sepal width vs. sepal length and color the points by species:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(Sepal.Length, Sepal.Width, data = iris, color = Species)</code></pre>
+<div id="htmlwidget-b7fa1bac511cd000abf0" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-b7fa1bac511cd000abf0" id="htmlwidget-b7fa1bac511cd000abf0-script"></script>
+<p>We see that points get colored according to species (based on the current theme, which is Tableau10) and a legend is added.</p>
+<p>We can map other attributes, and more than one attribute at once. For example, to vary both color and glyph type by species:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(Sepal.Length, Sepal.Width, data = iris,
+    color = Species, glyph = Species)</code></pre>
+<div id="htmlwidget-6b1ee4b0b86548f28735" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-6b1ee4b0b86548f28735" id="htmlwidget-6b1ee4b0b86548f28735-script"></script>
+<p>rbokeh knows to map a variable when the variable it is given does not conform to what is expected for that attribute. For example, the species values of “setosa”, etc., are not hex codes or color names. In the future we could allow this specification to be more explicit through using <code>I()</code>.</p>
+<p>We can also map continuous variables, and in this case it it sliced up and values are mapped across a scale for the attribute. For example, coloring by petal width:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(Sepal.Length, Sepal.Width, data = iris,
+    color = Petal.Width)</code></pre>
+<div id="htmlwidget-f21dce0ca0c894fa00cc" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-f21dce0ca0c894fa00cc" id="htmlwidget-f21dce0ca0c894fa00cc-script"></script>
+<p>We can do this with other glyphs as well. Some glyphs have a <code>group</code> parameter where we would like to split the data up by a grouping variable but not vary an aesthetic attribute. For example, with <code>ly_lines()</code>, we may want to break the data up by a variable and get a different line for each, all of the same color:</p>
+<pre class="r"><code>co2dat &lt;- data.frame(
+  y = co2,
+  x = floor(time(co2)),
+  m = rep(month.abb, 39))
+
+figure() %&gt;%
+  ly_lines(x, y, group = m, data = co2dat)</code></pre>
+<div id="htmlwidget-694925f8d65acd98e9ec" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-694925f8d65acd98e9ec" id="htmlwidget-694925f8d65acd98e9ec-script"></script>
+<p>We can of course vary the color as well:</p>
+<pre class="r"><code>figure(xlim = c(1958, 2010)) %&gt;%
+  ly_lines(x, y, color = m, data = co2dat)</code></pre>
+<div id="htmlwidget-08127ee57cb878c4b131" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-08127ee57cb878c4b131" id="htmlwidget-08127ee57cb878c4b131-script"></script>
+</div>
+<div id="legends" class="section level2">
+<h2>Legends</h2>
+<p>We saw that when mapping attributes to variables in our data, we get legends for free. But we may want to have more control over legends. Each layer we add to a plot can have a legend entry. Most layer functions have a <code>legend</code> argument that allows you to specify the legend entry for that layer. This only works if you are not mapping attributes or grouping. The value for the <code>legend</code> argument is simply the text you would like to have displayed next to the glyph in the legend. The glyph that appears in the legend is automatically created based on the attributes specified for the layer.</p>
+<p>An example we saw before made use of explicit specification of legend entries:</p>
+<pre class="r"><code>z &lt;- lm(dist ~ speed, data = cars)
+figure(width = 600, height = 600) %&gt;%
+  ly_points(cars, hover = cars, legend = &quot;data&quot;) %&gt;%
+  ly_lines(lowess(cars), legend = &quot;lowess&quot;) %&gt;%
+  ly_abline(z, type = 2, legend = &quot;lm&quot;)</code></pre>
+<div id="htmlwidget-1cee98522c00dacefe75" style="width:600px;height:600px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-1cee98522c00dacefe75" id="htmlwidget-1cee98522c00dacefe75-script"></script>
+<p>Bokeh provides finer control of parameters for legend appearance (such as where to put it) and we will expose these soon in rbokeh.</p>
+</div>
+<div id="axes" class="section level2">
+<h2>Axes</h2>
+<p>Bokeh allows you to specify numeric, categorical, and date/time axes. In the case of numeric axes, you can also specify a log scale. Examples for this are in the function reference under <a href="rd.html#x_axis"><code>x_axis</code></a> and <a href="rd.html#y_axis"><code>y_axis</code></a>.</p>
+<p>Axis labels formats can be controlled by specifying various tick format parameters in the axis layers.</p>
+<p>For example, the default Date axis monthly format of ‘%b%y’ can instead be specified as ‘%b’ using</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_lines(seq(as.Date(&quot;2012-01-01&quot;),
+    as.Date(&quot;2012-12-31&quot;), by=&quot;days&quot;), rnorm(366)) %&gt;%
+  x_axis(label = &quot;Date&quot;, format = list(months = &quot;%b&quot;))</code></pre>
+<div id="htmlwidget-c71cfb985e259e8ac28b" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-c71cfb985e259e8ac28b" id="htmlwidget-c71cfb985e259e8ac28b-script"></script>
+<p>or commas could be added to long numeric labels using</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(rnorm(10), rnorm(10) * 10000) %&gt;%
+  y_axis(number_formatter = &quot;numeral&quot;, format = &quot;0,000&quot;)</code></pre>
+<div id="htmlwidget-116047d0d2a64131024d" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-116047d0d2a64131024d" id="htmlwidget-116047d0d2a64131024d-script"></script>
+<p>A complete list of supported axis tick parameters can be found in the function reference under <a href="rd.html#x_axis"><code>x_axis</code></a> and <a href="rd.html#y_axis"><code>y_axis</code></a>.</p>
+</div>
+<div id="tools" class="section level2">
+<h2>Tools</h2>
+<p>Bokeh has many tools available for different types of interaction. Tools can be easily added to a plot either through the <code>tools</code> argument to <code>figure()</code>, in which case a vector of tool names is provided, or through any of the various <code>tool_</code> functions. In the latter case, some tools have additional parameters that give us finer control over the behavior of the tool.</p>
+<p>For example, suppose I want to add the <code>box_select</code> and <code>lasso_select</code> tools to my figure:</p>
+<pre class="r"><code>figure() %&gt;%
+  ly_points(Sepal.Length, Sepal.Width, data = iris, color = Species) %&gt;%
+  tool_box_select() %&gt;%
+  tool_lasso_select()</code></pre>
+<div id="htmlwidget-8c295b376f5efb85b361" style="width:500px;height:540px;" class="lazy-widget">
+<div class="lazy-loading"></div>
+<div class="lazy-loading-text">lazy loading...</div>
+</div>
+<script type="application/json" data-for="htmlwidget-8c295b376f5efb85b361" id="htmlwidget-8c295b376f5efb85b361-script"></script>
+<p>Now in the plot in the toolbar at the top I can choose the one of these tools and select points in the figure. This is particularly useful for linked brushing described in the next section.</p>
+<p>For more examples, see the examples in the <a href="rd.html#tool_box_select"><code>tool_</code></a> functions in the function reference.</p>
+</div>
+<div id="grids" class="section level2">
+<h2>Grids</h2>
+<p>Bokeh allows us to construct grids of plots that can interact with each other through linked pan/zoom and brushing. There are several examples in the function reference for <a href="rd.html#grid_plot"><code>grid_plot</code></a></p>
+</div>
+<div id="themes" class="section level2">
+<h2>Themes</h2>
+<p>Theme support in rbokeh is pretty minimal right now but the groundwork is there. More to come on this.</p>
+</div>
+<div id="statistical-layers" class="section level2">
+<h2>Statistical layers</h2>
+<p>There are several layer functions that add statistically-derived glyphs to a plot, such as <code>ly_boxplot</code>, <code>ly_hist</code>, <code>ly_density</code>, etc. A major focus in the near future of this package will be the ability to add as many of these as we can and make them robust to different use cases.</p>
+</div>
+</div>
+<div id="design-dev" class="section level1">
+<h1>Design / Dev</h1>
+<p>Notes on the design of rbokeh, roadmap, etc. to come.</p>
+<!-- The Bokeh model JSON is built as an R list incrementally as layers are added.  Each layer typically adds a ColumnDataSource, GlyphRenderer, and Glyph to the model list.  The model list, however, is not complete until the plot is printed, at which point `prepare_figure()` is called.
+
+`prepare_figure()` does the following:
+
+- takes care of any deferred rendering - for example, some functions such as `ly_abline()` wait until the plot is called to get the range of values over which it needs to be rendered
+- resolve attributes that need to be mapped
+- add legend entries for mapped attributes
+- clean up the model list to be ready to send to Bokeh (remove names, etc.)
+ -->
+</div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div class="container">
+      <div class="col-md-6">
+                <p>&copy; Ryan Hafen, 2018</p>
+              </div>
+      <div class="col-md-6">
+        <p class="pull-right">created with <a href="https://github.com/hafen/packagedocs">packagedocs</a>
+                  </p>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+</html>
