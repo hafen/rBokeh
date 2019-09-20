@@ -4,8 +4,9 @@
 \alias{ticker_num}
 \title{Generate ticks on a linear / numeric scale.}
 \usage{
-ticker_num(min_interval = 0, max_interval = NULL, desired_num_ticks = 6,
-  num_minor_ticks = 5, mantissas = c(1, 2, 5), base = 10, clear = FALSE)
+ticker_num(min_interval = 0, max_interval = NULL,
+  desired_num_ticks = 6, num_minor_ticks = 5, mantissas = c(1, 2, 5),
+  base = 10, clear = FALSE)
 }
 \arguments{
 \item{min_interval}{The smallest allowable interval between two adjacent ticks.}

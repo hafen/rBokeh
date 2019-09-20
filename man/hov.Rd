@@ -4,8 +4,8 @@
 \alias{hov}
 \title{Create a hover specification.}
 \usage{
-hov(tooltips = NULL, line_policy = NULL, callback = NULL, anchor = NULL,
-  show_arrow = NULL, mode = NULL, attachment = NULL,
+hov(tooltips = NULL, line_policy = NULL, callback = NULL,
+  anchor = NULL, show_arrow = NULL, mode = NULL, attachment = NULL,
   point_policy = NULL)
 }
 \arguments{

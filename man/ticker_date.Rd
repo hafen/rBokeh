@@ -4,7 +4,8 @@
 \alias{ticker_date}
 \title{Generate nice ticks across different date and time scales.}
 \usage{
-ticker_date(desired_num_ticks = 6L, num_minor_ticks = 0L, clear = FALSE)
+ticker_date(desired_num_ticks = 6L, num_minor_ticks = 0L,
+  clear = FALSE)
 }
 \arguments{
 \item{desired_num_ticks}{A desired target number of major tick positions to generate across the plot range. Note: This value is a suggestion, and ticker subclasses may ignore it entirely, or use it only as an ideal goal to approach as well as can be, in the context of a specific ticking strategy.}

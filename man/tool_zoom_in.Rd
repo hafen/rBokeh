@@ -35,3 +35,4 @@ Other tools: \code{\link{tool_box_select}},
   \code{\link{tool_wheel_zoom}},
   \code{\link{tool_zoom_out}}
 }
+\concept{tools}

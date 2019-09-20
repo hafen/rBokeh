@@ -7,8 +7,9 @@
 ly_wedge(fig, x, y = NULL, data = figure_data(fig), radius = 0.2,
   start_angle = 0, end_angle = 2 * pi, direction = "anticlock",
   color = NULL, alpha = NULL, hov_color = NULL, hov_alpha = NULL,
-  ns_color = NULL, ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL,
-  hover = NULL, legend = TRUE, lname = NULL, lgroup = NULL, ...)
+  ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
+  sel_alpha = NULL, hover = NULL, legend = TRUE, lname = NULL,
+  lgroup = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -120,3 +121,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_ray}}, \code{\link{ly_rect}},
   \code{\link{ly_segments}}, \code{\link{ly_text}}
 }
+\concept{layer functions}

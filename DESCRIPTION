@@ -15,6 +15,7 @@ URL: https://hafen.github.io/rbokeh https://github.com/bokeh/rbokeh
 BugReports: https://github.com/bokeh/rbokeh/issues
 License: MIT + file LICENSE
 LazyData: true
+Encoding: UTF-8
 NeedsCompilation: no
 Imports:
     R6,
@@ -34,4 +35,4 @@ Suggests:
     testthat,
     lintr,
     roxygen2 (>= 5.0.0)
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

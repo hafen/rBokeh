@@ -59,3 +59,4 @@ Other tools: \code{\link{tool_box_zoom}},
   \code{\link{tool_wheel_zoom}},
   \code{\link{tool_zoom_in}}, \code{\link{tool_zoom_out}}
 }
+\concept{tools}

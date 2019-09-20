@@ -6,8 +6,9 @@
 \usage{
 ly_image_url(fig, x = NULL, y = NULL, url, w = 10, h = 10,
   data = figure_data(fig), dilate = TRUE, anchor = "top_left",
-  angle = 0, w_units = "screen", h_units = "screen", global_alpha = 1,
-  retry_attempts = 0, retry_timeout = 0, lgroup = NULL, lname = NULL)
+  angle = 0, w_units = "screen", h_units = "screen",
+  global_alpha = 1, retry_attempts = 0, retry_timeout = 0,
+  lgroup = NULL, lname = NULL)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -73,3 +74,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

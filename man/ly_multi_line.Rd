@@ -6,8 +6,9 @@
 \usage{
 ly_multi_line(fig, xs = NULL, ys = NULL, type = 1, width = 1,
   color = NULL, alpha = NULL, hov_color = NULL, hov_alpha = NULL,
-  ns_color = NULL, ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL,
-  hover = NULL, legend = TRUE, lgroup = NULL, lname = NULL, ...)
+  ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
+  sel_alpha = NULL, hover = NULL, legend = TRUE, lgroup = NULL,
+  lname = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -101,3 +102,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

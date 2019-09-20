@@ -6,10 +6,11 @@
 \usage{
 ly_text(fig, x, y = NULL, text = NULL, color = NULL, alpha = NULL,
   angle = NULL, data = figure_data(fig), x_offset = NULL,
-  y_offset = NULL, font = NULL, font_size = NULL, font_style = NULL,
-  align = NULL, baseline = NULL, legend = TRUE, hov_color = NULL,
-  hov_alpha = NULL, ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
-  sel_alpha = NULL, lgroup = NULL, lname = NULL)
+  y_offset = NULL, font = NULL, font_size = NULL,
+  font_style = NULL, align = NULL, baseline = NULL, legend = TRUE,
+  hov_color = NULL, hov_alpha = NULL, ns_color = NULL,
+  ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL,
+  lgroup = NULL, lname = NULL)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -103,3 +104,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_ray}}, \code{\link{ly_rect}},
   \code{\link{ly_segments}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

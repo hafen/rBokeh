@@ -4,11 +4,11 @@
 \alias{tool_lasso_select}
 \title{Add "lasso_select" tool to a Bokeh figure}
 \usage{
-tool_lasso_select(fig, select_every_mousemove = TRUE, line_color = NULL,
-  line_alpha = NULL, fill_color = NULL, fill_alpha = NULL,
-  line_width = NULL, line_dash = NULL, line_dash_offset = NULL,
-  line_join = NULL, line_cap = NULL, names = NULL, callback = NULL,
-  remove = FALSE)
+tool_lasso_select(fig, select_every_mousemove = TRUE,
+  line_color = NULL, line_alpha = NULL, fill_color = NULL,
+  fill_alpha = NULL, line_width = NULL, line_dash = NULL,
+  line_dash_offset = NULL, line_join = NULL, line_cap = NULL,
+  names = NULL, callback = NULL, remove = FALSE)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -58,3 +58,4 @@ Other tools: \code{\link{tool_box_select}},
   \code{\link{tool_wheel_zoom}},
   \code{\link{tool_zoom_in}}, \code{\link{tool_zoom_out}}
 }
+\concept{tools}

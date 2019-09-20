@@ -4,8 +4,8 @@
 \alias{axis_spec}
 \title{Specify axis parameters for an axis.}
 \usage{
-axis_spec(visible = TRUE, major_label_overrides = NULL, bounds = "auto",
-  level = "overlay", axis_label_standoff = NULL,
+axis_spec(visible = TRUE, major_label_overrides = NULL,
+  bounds = "auto", level = "overlay", axis_label_standoff = NULL,
   axis_label_text_align = NULL, axis_label_text_alpha = NULL,
   axis_label_text_baseline = NULL, axis_label_text_color = NULL,
   axis_label_text_font = NULL, axis_label_text_font_size = NULL,
@@ -13,19 +13,20 @@ axis_spec(visible = TRUE, major_label_overrides = NULL, bounds = "auto",
   major_label_standoff = NULL, major_label_text_align = NULL,
   major_label_text_alpha = NULL, major_label_text_baseline = NULL,
   major_label_text_color = NULL, major_label_text_font = NULL,
-  major_label_text_font_size = NULL, major_label_text_font_style = NULL,
-  axis_line_alpha = NULL, axis_line_cap = NULL, axis_line_color = NULL,
+  major_label_text_font_size = NULL,
+  major_label_text_font_style = NULL, axis_line_alpha = NULL,
+  axis_line_cap = NULL, axis_line_color = NULL,
   axis_line_dash = NULL, axis_line_dash_offset = NULL,
-  axis_line_join = NULL, axis_line_width = NULL, major_tick_in = NULL,
-  major_tick_line_alpha = NULL, major_tick_line_cap = NULL,
-  major_tick_line_color = NULL, major_tick_line_dash = NULL,
-  major_tick_line_dash_offset = NULL, major_tick_line_join = NULL,
-  major_tick_line_width = NULL, major_tick_out = NULL,
-  minor_tick_in = NULL, minor_tick_line_alpha = NULL,
-  minor_tick_line_cap = NULL, minor_tick_line_color = NULL,
-  minor_tick_line_dash = NULL, minor_tick_line_dash_offset = NULL,
-  minor_tick_line_join = NULL, minor_tick_line_width = NULL,
-  minor_tick_out = NULL, clear = FALSE)
+  axis_line_join = NULL, axis_line_width = NULL,
+  major_tick_in = NULL, major_tick_line_alpha = NULL,
+  major_tick_line_cap = NULL, major_tick_line_color = NULL,
+  major_tick_line_dash = NULL, major_tick_line_dash_offset = NULL,
+  major_tick_line_join = NULL, major_tick_line_width = NULL,
+  major_tick_out = NULL, minor_tick_in = NULL,
+  minor_tick_line_alpha = NULL, minor_tick_line_cap = NULL,
+  minor_tick_line_color = NULL, minor_tick_line_dash = NULL,
+  minor_tick_line_dash_offset = NULL, minor_tick_line_join = NULL,
+  minor_tick_line_width = NULL, minor_tick_out = NULL, clear = FALSE)
 }
 \arguments{
 \item{visible}{Is the renderer visible.}

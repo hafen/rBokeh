@@ -6,11 +6,13 @@
 \alias{y_axis}
 \title{Customize x or y axis of a Bokeh figure.}
 \usage{
-x_axis(fig, label = NULL, position = "below", log = FALSE, draw = TRUE,
-  ticker = NULL, tickformatter = NULL, axis = NULL, grid = NULL)
+x_axis(fig, label = NULL, position = "below", log = FALSE,
+  draw = TRUE, ticker = NULL, tickformatter = NULL, axis = NULL,
+  grid = NULL)
 
-y_axis(fig, label = NULL, position = "left", log = FALSE, draw = TRUE,
-  ticker = NULL, tickformatter = NULL, axis = NULL, grid = NULL)
+y_axis(fig, label = NULL, position = "left", log = FALSE,
+  draw = TRUE, ticker = NULL, tickformatter = NULL, axis = NULL,
+  grid = NULL)
 }
 \arguments{
 \item{fig}{Figure to modify.}

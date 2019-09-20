@@ -10,10 +10,11 @@ figure(data = NULL, width = 600, height = 600, title = NULL,
   xaxes = "below", yaxes = "left", legend_location = "top_right",
   logo = NULL, theme = getOption("bokeh_theme"), tools = c("pan",
   "wheel_zoom", "box_zoom", "reset", "save", "help"),
-  toolbar_location = "above", toolbar_sticky = NULL, h_symmetry = TRUE,
-  v_symmetry = FALSE, lod_factor = 10, lod_interval = 300,
-  lod_threshold = NULL, lod_timeout = 500, output_backend = "canvas",
-  min_border = NULL, min_border_left = NULL, min_border_bottom = NULL,
+  toolbar_location = "above", toolbar_sticky = NULL,
+  h_symmetry = TRUE, v_symmetry = FALSE, lod_factor = 10,
+  lod_interval = 300, lod_threshold = NULL, lod_timeout = 500,
+  output_backend = "canvas", min_border = NULL,
+  min_border_left = NULL, min_border_bottom = NULL,
   min_border_right = NULL, min_border_top = NULL, hidpi = NULL)
 }
 \arguments{

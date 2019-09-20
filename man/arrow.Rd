@@ -4,9 +4,9 @@
 \alias{arrow}
 \title{Specify details of an arrow head.}
 \usage{
-arrow(type = c("normal", "open", "tee", "vee"), size = NULL, color = NULL,
-  alpha = NULL, line_width = NULL, line_join = NULL, line_cap = NULL,
-  line_dash = NULL, line_dash_offset = NULL, ...)
+arrow(type = c("normal", "open", "tee", "vee"), size = NULL,
+  color = NULL, alpha = NULL, line_width = NULL, line_join = NULL,
+  line_cap = NULL, line_dash = NULL, line_dash_offset = NULL, ...)
 }
 \arguments{
 \item{type}{The arrow head type. One of "normal", "open", "tee", "vee".}
@@ -61,3 +61,4 @@ Other annotation functions: \code{\link{ann_arrow}},
   \code{\link{ann_span}}, \code{\link{ann_title}},
   \code{\link{ann_whisker}}
 }
+\concept{annotation functions}

@@ -7,8 +7,9 @@
 tickformatter_date(years = c("\%Y"), months = c("\%m/\%Y", "\%b\%y"),
   days = c("\%m/\%d", "\%a\%d"), hours = c("\%Hh", "\%H:\%M"),
   hourmin = c("\%H:\%M"), minutes = c(":\%M", "\%Mm"),
-  minsec = c(":\%M:\%S"), seconds = c("\%Ss"), milliseconds = c("\%3Nms",
-  "\%S.\%3Ns"), microseconds = c("\%fus"), clear = FALSE)
+  minsec = c(":\%M:\%S"), seconds = c("\%Ss"),
+  milliseconds = c("\%3Nms", "\%S.\%3Ns"), microseconds = c("\%fus"),
+  clear = FALSE)
 }
 \arguments{
 \item{years}{Formats for displaying datetime values in the "years" range. See details.}

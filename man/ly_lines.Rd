@@ -5,10 +5,11 @@
 \title{Add a "lines" layer to a Bokeh figure
 Draws lines with the given coordinates.}
 \usage{
-ly_lines(fig, x = NULL, y = NULL, data = figure_data(fig), type = 1,
-  width = 1, color = NULL, alpha = NULL, hover = NULL, legend = TRUE,
-  hov_color = NULL, hov_alpha = NULL, ns_color = NULL, ns_alpha = NULL,
-  sel_color = NULL, sel_alpha = NULL, lgroup = NULL, lname = NULL, ...)
+ly_lines(fig, x = NULL, y = NULL, data = figure_data(fig),
+  type = 1, width = 1, color = NULL, alpha = NULL, hover = NULL,
+  legend = TRUE, hov_color = NULL, hov_alpha = NULL,
+  ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
+  sel_alpha = NULL, lgroup = NULL, lname = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -87,3 +88,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

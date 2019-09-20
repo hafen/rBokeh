@@ -10,11 +10,12 @@ gmap(data = NULL, lat = 0, lng = 0, zoom = 0, api_key = NULL,
   xlab = NULL, ylab = NULL, xlim = NULL, ylim = NULL,
   range_padding = 0.07, xgrid = FALSE, ygrid = FALSE,
   legend_location = "top_right", logo = NULL,
-  theme = getOption("bokeh_theme"), tools = c("pan", "wheel_zoom", "save"),
-  toolbar_location = "above", toolbar_sticky = NULL, h_symmetry = TRUE,
-  v_symmetry = FALSE, lod_factor = 10, lod_interval = 300,
-  lod_threshold = NULL, lod_timeout = 500, output_backend = "canvas",
-  min_border = NULL, min_border_left = NULL, min_border_bottom = NULL,
+  theme = getOption("bokeh_theme"), tools = c("pan", "wheel_zoom",
+  "save"), toolbar_location = "above", toolbar_sticky = NULL,
+  h_symmetry = TRUE, v_symmetry = FALSE, lod_factor = 10,
+  lod_interval = 300, lod_threshold = NULL, lod_timeout = 500,
+  output_backend = "canvas", min_border = NULL,
+  min_border_left = NULL, min_border_bottom = NULL,
   min_border_right = NULL, min_border_top = NULL, hidpi = NULL)
 }
 \arguments{

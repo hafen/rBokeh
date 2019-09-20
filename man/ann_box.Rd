@@ -100,3 +100,4 @@ Other annotation functions: \code{\link{ann_arrow}},
   \code{\link{ann_title}}, \code{\link{ann_whisker}},
   \code{\link{arrow}}
 }
+\concept{annotation functions}

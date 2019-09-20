@@ -4,10 +4,11 @@
 \alias{ly_hist}
 \title{Add a "hist" layer to a Bokeh figure}
 \usage{
-ly_hist(fig, x, data = figure_data(fig), breaks = "Sturges", freq = TRUE,
-  include.lowest = TRUE, right = TRUE, color = NULL, alpha = 1,
-  hov_color = NULL, hov_alpha = NULL, ns_color = NULL, ns_alpha = NULL,
-  sel_color = NULL, sel_alpha = NULL, lname = NULL, lgroup = NULL, ...)
+ly_hist(fig, x, data = figure_data(fig), breaks = "Sturges",
+  freq = TRUE, include.lowest = TRUE, right = TRUE, color = NULL,
+  alpha = 1, hov_color = NULL, hov_alpha = NULL, ns_color = NULL,
+  ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL,
+  lname = NULL, lgroup = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -97,3 +98,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

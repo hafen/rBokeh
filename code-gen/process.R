@@ -1,11 +1,12 @@
 # # first clone https://github.com/bokeh/bokeh, then run:
 # git fetch --all --tags --prune
-# git checkout tags/1.0.1 -b 1.0.1
-# python scripts/spec.py > spec_1.0.1.json
+# git checkout tags/1.3.4 -b 1.3.4
+# conda install bokeh # to make sure you have everything
+# python scripts/spec.py > ~/Documents/code/rbokeh/code-gen/spec_1.3.4.json
 
 source("code-gen/fns.R")
 
-mods <- get_mod_json("code-gen/spec_1.0.1.json")
+mods <- get_mod_json("code-gen/spec_1.3.4.json")
 
 ## write out R6 class code for all models
 ##---------------------------------------------------------
@@ -40,6 +41,6 @@ bk_prop_types$BoxAnnotation$bottom$type <- "Float"
 bk_prop_types$BoxAnnotation$left$type <- "Float"
 bk_prop_types$BoxAnnotation$right$type <- "Float"
 # this is incorrect in the provided spec
-bk_prop_types$ImageURL$url$type <- "StringSpec(String, Dict(Enum('field', 'value', 'transform'), Either(String, Instance(Transform), List(String))), List(String))"
+# bk_prop_types$ImageURL$url$type <- "StringSpec(String, Dict(Enum('field', 'value', 'transform'), Either(String, Instance(Transform), List(String))), List(String))"
 
 save(bk_prop_types, file = "inst/bk_prop_types.rda", compress = "bzip2")

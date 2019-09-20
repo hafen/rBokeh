@@ -34,10 +34,12 @@ validate <- function(x, type, name) {
   }
 
   if (grepl("^Tuple\\(", type)) {
+    len <- length(strsplit(type, ",")[[1]])
     if (is.null(x))
       return(NULL)
-    if (length(x) != 2)
-      stop("Attribute '", name, "' must be a vector of length 2.", call. = FALSE)
+    if (length(x) != len)
+      stop("Attribute '", name, "' must be a vector of length ", len, ".",
+        call. = FALSE)
     subtype <- strip_white(gsub("^Tuple\\((.*)\\)$", "\\1", type))
     if (subtype %in% c("Date , Date", "Float , Float")) {
       if (is.list(x) && all(sapply(x, length) == 1))

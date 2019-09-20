@@ -7,7 +7,8 @@
 add_tiles(fig, tile_spec, hi_res = TRUE, y_origin_offset = NULL,
   x_origin_offset = NULL, min_zoom = NULL, max_zoom = NULL,
   extra_url_vars = NULL, initial_resolution = NULL, tile_size = NULL,
-  alpha = NULL, render_parents = NULL, visible = NULL, level = NULL)
+  alpha = NULL, render_parents = NULL, visible = NULL,
+  level = NULL)
 }
 \arguments{
 \item{fig}{figure to modify}

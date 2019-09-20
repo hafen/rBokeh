@@ -6,9 +6,9 @@
 \usage{
 ly_boxplot(fig, x, y = NULL, data = figure_data(fig), width = 0.9,
   coef = 1.5, color = "blue", alpha = 1, hov_color = NULL,
-  hov_alpha = NULL, ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
-  sel_alpha = NULL, outlier_glyph = 1, outlier_size = 10, lname = NULL,
-  lgroup = NULL, ...)
+  hov_alpha = NULL, ns_color = NULL, ns_alpha = NULL,
+  sel_color = NULL, sel_alpha = NULL, outlier_glyph = 1,
+  outlier_size = 10, lname = NULL, lgroup = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -105,3 +105,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

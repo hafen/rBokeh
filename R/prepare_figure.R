@@ -268,7 +268,6 @@ prepare_figure <- function(fig) {
                 ## for consistency, we use d3 transform instead of ColorMapper
                 cjs <- js_transform_color_cat(spc)
 
-
                 # TODO: move this logic into update_legend()
                 if (is.character(ly$legend)) {
                   legend_head <- ly$legend
@@ -363,30 +362,7 @@ prepare_figure <- function(fig) {
                   # units = "screen",
                   field = sanitize(nm),
                   transform = cjs$get_instance())
-  # } else {
-  #   if (is.factor(val)) {
-  #     fcts <- levels(val)
-  #   } else {
-  #     fcts <- unique(val)
-  #   }
-  #   rng <- seq(5, 30, length = length(fcts))
-  #   fcts_str <- paste0(fcts, ": ", rng, collapse = ", ")
-  #   cjs <- CustomJSTransform$new(
-  #     func = paste0(
-  # "
-  # var fcts = {", fcts_str, "};
-  # return fcts[x];
-  # "),
-  #     v_func = paste0(
-  # "
-  # var fcts = {", fcts_str, "};
-  # new_xs = new Array(xs.length);
-  # for(i = 0; i < xs.length; i++) {
-  # new_xs[i] = fcts[xs[i]];
-  # }
-  # return new_xs;
-  # "))
-  # }
+
                 # TODO: figure out legend for these...
                 cjs_id <- digest::digest(list(val, attr_nm))
                 cur_ly[[cjs_id]] <- cjs
@@ -1322,14 +1298,15 @@ add_legend <- function(mods, legend) {
     }
   }
 
-  mods$legend <- list(
-    renderers = renderers,
-    glyphs = glyphs,
-    items = legend_items,
-    legend = Legend$new(items = lapply(legend_items, function(x) x$get_instance()),
-      plot = mods$plot$get_instance()),
-    cds = null_cds
-  )
+  # TODO: legends have changed!
+  # mods$legend <- list(
+  #   renderers = renderers,
+  #   glyphs = glyphs,
+  #   items = legend_items,
+  #   legend = Legend$new(items = lapply(legend_items, function(x) x$get_instance()),
+  #     plot = mods$plot$get_instance()),
+  #   cds = null_cds
+  # )
 
   mods
 }

@@ -4,8 +4,8 @@
 \alias{spec}
 \title{Provide additional specification information about a Bokeh plot attribute.}
 \usage{
-spec(x, domain = NULL, range = NULL, transform = NULL, units = "screen",
-  exponent = 0.5, unknown = "lightgray")
+spec(x, domain = NULL, range = NULL, transform = NULL,
+  units = "screen", exponent = 0.5, unknown = "lightgray")
 }
 \arguments{
 \item{x}{Data / variable / expression to add specification information to.}

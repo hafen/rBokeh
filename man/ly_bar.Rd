@@ -4,12 +4,13 @@
 \alias{ly_bar}
 \title{Add a "barchart" layer to a Bokeh figure}
 \usage{
-ly_bar(fig, x = NULL, y = NULL, data = figure_data(fig), color = NULL,
-  alpha = 1, hov_color = NULL, hov_alpha = NULL, ns_color = NULL,
-  ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL,
-  position = c("stack", "fill", "dodge"), width = 0.9, hover = FALSE,
-  origin = NULL, breaks = NULL, right = FALSE, binwidth = NULL,
-  lname = NULL, lgroup = NULL, legend = TRUE, ...)
+ly_bar(fig, x = NULL, y = NULL, data = figure_data(fig),
+  color = NULL, alpha = 1, hov_color = NULL, hov_alpha = NULL,
+  ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
+  sel_alpha = NULL, position = c("stack", "fill", "dodge"),
+  width = 0.9, hover = FALSE, origin = NULL, breaks = NULL,
+  right = FALSE, binwidth = NULL, lname = NULL, lgroup = NULL,
+  legend = TRUE, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -149,3 +150,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

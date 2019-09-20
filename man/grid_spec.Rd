@@ -5,8 +5,9 @@
 \title{Specify parameters for displaying a horizontal or vertical grid for an axis.}
 \usage{
 grid_spec(visible = TRUE, level = "underlay", bounds = "auto",
-  band_fill_alpha = NULL, band_fill_color = NULL, grid_line_alpha = NULL,
-  grid_line_cap = NULL, grid_line_color = NULL, grid_line_dash = NULL,
+  band_fill_alpha = NULL, band_fill_color = NULL,
+  grid_line_alpha = NULL, grid_line_cap = NULL,
+  grid_line_color = NULL, grid_line_dash = NULL,
   grid_line_dash_offset = NULL, grid_line_join = NULL,
   grid_line_width = NULL, minor_grid_line_alpha = NULL,
   minor_grid_line_cap = NULL, minor_grid_line_color = NULL,

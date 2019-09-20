@@ -4,13 +4,14 @@
 \alias{theme_plot}
 \title{Override theme parameters for general plot attributes}
 \usage{
-theme_plot(fig, background_fill_color = "white", background_fill_alpha = 1,
-  border_fill_color = "white", border_fill_alpha = 1,
-  outline_line_alpha = 1, outline_line_cap = "butt",
-  outline_line_color = "black", outline_line_dash = NULL,
-  outline_line_dash_offset = 0, outline_line_join = "miter",
-  outline_line_width = 1, min_border = 50, min_border_bottom = 50,
-  min_border_left = 50, min_border_right = 50, min_border_top = 50)
+theme_plot(fig, background_fill_color = "white",
+  background_fill_alpha = 1, border_fill_color = "white",
+  border_fill_alpha = 1, outline_line_alpha = 1,
+  outline_line_cap = "butt", outline_line_color = "black",
+  outline_line_dash = NULL, outline_line_dash_offset = 0,
+  outline_line_join = "miter", outline_line_width = 1,
+  min_border = 50, min_border_bottom = 50, min_border_left = 50,
+  min_border_right = 50, min_border_top = 50)
 }
 \arguments{
 \item{fig}{Figure to modify.}

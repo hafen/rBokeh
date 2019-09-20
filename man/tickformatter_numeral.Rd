@@ -4,8 +4,8 @@
 \alias{tickformatter_numeral}
 \title{Tick formatter based on a human-readable format string.}
 \usage{
-tickformatter_numeral(format = "0,0", rounding = "round", language = "en",
-  clear = FALSE)
+tickformatter_numeral(format = "0,0", rounding = "round",
+  language = "en", clear = FALSE)
 }
 \arguments{
 \item{format}{The number format, as defined in the tables described in the details. For the complete specification, see \url{http://numbrojs.com/format.html}.}

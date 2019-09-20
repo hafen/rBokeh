@@ -6,10 +6,10 @@
 \usage{
 ann_arrow(fig, x_start = NULL, y_start = NULL, x_end = NULL,
   y_end = NULL, color = NULL, alpha = NULL, line_width = NULL,
-  data = figure_data(fig), start = NULL, start_units = NULL, end = NULL,
-  end_units = NULL, line_dash = NULL, line_join = NULL,
-  line_dash_offset = NULL, line_cap = NULL, lgroup = NULL, lname = NULL,
-  ...)
+  data = figure_data(fig), start = NULL, start_units = NULL,
+  end = NULL, end_units = NULL, line_dash = NULL, line_join = NULL,
+  line_dash_offset = NULL, line_cap = NULL, lgroup = NULL,
+  lname = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -119,3 +119,4 @@ Other annotation functions: \code{\link{ann_band}},
   \code{\link{ann_title}}, \code{\link{ann_whisker}},
   \code{\link{arrow}}
 }
+\concept{annotation functions}

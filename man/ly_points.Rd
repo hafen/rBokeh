@@ -4,11 +4,11 @@
 \alias{ly_points}
 \title{Add a "points" layer to a Bokeh figure}
 \usage{
-ly_points(fig, x = NULL, y = NULL, data = figure_data(fig), glyph = 21,
-  color = NULL, alpha = NULL, size = NULL, hover = NULL,
-  legend = TRUE, hov_color = NULL, hov_alpha = NULL, ns_color = NULL,
-  ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL, lgroup = NULL,
-  lname = NULL, ...)
+ly_points(fig, x = NULL, y = NULL, data = figure_data(fig),
+  glyph = 21, color = NULL, alpha = NULL, size = NULL,
+  hover = NULL, legend = TRUE, hov_color = NULL, hov_alpha = NULL,
+  ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
+  sel_alpha = NULL, lgroup = NULL, lname = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -110,3 +110,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

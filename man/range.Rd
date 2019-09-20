@@ -8,13 +8,15 @@
 \usage{
 x_range(fig, lims = NULL, min_interval = NULL, max_interval = NULL,
   bounds = NULL, flipped = FALSE, range_padding = 0.07,
-  range_padding_units = "percent", default_span = NULL, follow = NULL,
-  follow_interval = NULL, callback = NULL, clear = FALSE)
+  range_padding_units = "percent", default_span = NULL,
+  follow = NULL, follow_interval = NULL, callback = NULL,
+  clear = FALSE)
 
 y_range(fig, lims = NULL, min_interval = NULL, max_interval = NULL,
   bounds = NULL, flipped = FALSE, range_padding = 0.07,
-  range_padding_units = "percent", default_span = NULL, follow = NULL,
-  follow_interval = NULL, callback = NULL, clear = FALSE)
+  range_padding_units = "percent", default_span = NULL,
+  follow = NULL, follow_interval = NULL, callback = NULL,
+  clear = FALSE)
 }
 \arguments{
 \item{fig}{Figure to modify.}

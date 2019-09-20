@@ -34,3 +34,4 @@ Other tools: \code{\link{tool_box_select}},
   \code{\link{tool_undo}}, \code{\link{tool_wheel_pan}},
   \code{\link{tool_wheel_zoom}}, \code{\link{tool_zoom_in}}
 }
+\concept{tools}

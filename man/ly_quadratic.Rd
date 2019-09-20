@@ -5,9 +5,10 @@
 \title{Add a "quadratic" layer to a Bokeh figure}
 \usage{
 ly_quadratic(fig, x0, y0, x1, y1, cx, cy, data = figure_data(fig),
-  color = NULL, alpha = NULL, type = 1, width = 1, hov_color = NULL,
-  hov_alpha = NULL, ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
-  sel_alpha = NULL, legend = TRUE, lname = NULL, lgroup = NULL, ...)
+  color = NULL, alpha = NULL, type = 1, width = 1,
+  hov_color = NULL, hov_alpha = NULL, ns_color = NULL,
+  ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL,
+  legend = TRUE, lname = NULL, lgroup = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -105,3 +106,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_rect}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

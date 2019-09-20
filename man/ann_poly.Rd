@@ -5,9 +5,9 @@
 \title{Add a "polygon" annotation to a Bokeh figure}
 \usage{
 ann_poly(fig, xs = NULL, ys = NULL, color = NULL, alpha = NULL,
-  ys_units = NULL, xs_units = NULL, line_width = NULL, line_cap = NULL,
-  line_join = NULL, line_dash = NULL, line_dash_offset = NULL,
-  lgroup = NULL, lname = NULL, ...)
+  ys_units = NULL, xs_units = NULL, line_width = NULL,
+  line_cap = NULL, line_join = NULL, line_dash = NULL,
+  line_dash_offset = NULL, lgroup = NULL, lname = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -84,3 +84,4 @@ Other annotation functions: \code{\link{ann_arrow}},
   \code{\link{ann_title}}, \code{\link{ann_whisker}},
   \code{\link{arrow}}
 }
+\concept{annotation functions}

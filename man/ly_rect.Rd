@@ -6,8 +6,9 @@
 \usage{
 ly_rect(fig, xleft, ybottom, xright, ytop, data = figure_data(fig),
   color = NULL, alpha = NULL, hov_color = NULL, hov_alpha = NULL,
-  ns_color = NULL, ns_alpha = NULL, sel_color = NULL, sel_alpha = NULL,
-  hover = NULL, legend = TRUE, lname = NULL, lgroup = NULL, ...)
+  ns_color = NULL, ns_alpha = NULL, sel_color = NULL,
+  sel_alpha = NULL, hover = NULL, legend = TRUE, lname = NULL,
+  lgroup = NULL, ...)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -118,3 +119,4 @@ Other layer functions: \code{\link{ly_annular_wedge}},
   \code{\link{ly_ray}}, \code{\link{ly_segments}},
   \code{\link{ly_text}}, \code{\link{ly_wedge}}
 }
+\concept{layer functions}

@@ -62,3 +62,4 @@ Other annotation functions: \code{\link{ann_arrow}},
   \code{\link{ann_span}}, \code{\link{ann_title}},
   \code{\link{arrow}}
 }
+\concept{annotation functions}

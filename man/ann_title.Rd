@@ -6,12 +6,12 @@
 \usage{
 ann_title(fig, text = NULL, align = NULL, text_color = NULL,
   text_alpha = NULL, text_font_size = NULL, text_font = NULL,
-  text_font_style = NULL, offset = NULL, background_fill_color = NULL,
-  background_fill_alpha = NULL, border_line_color = NULL,
-  border_line_alpha = NULL, border_line_width = NULL,
-  border_line_join = NULL, border_line_cap = NULL,
-  border_line_dash = NULL, border_line_dash_offset = NULL,
-  render_mode = NULL)
+  text_font_style = NULL, offset = NULL,
+  background_fill_color = NULL, background_fill_alpha = NULL,
+  border_line_color = NULL, border_line_alpha = NULL,
+  border_line_width = NULL, border_line_join = NULL,
+  border_line_cap = NULL, border_line_dash = NULL,
+  border_line_dash_offset = NULL, render_mode = NULL)
 }
 \arguments{
 \item{fig}{Figure to modify.}
@@ -73,3 +73,4 @@ Other annotation functions: \code{\link{ann_arrow}},
   \code{\link{ann_span}}, \code{\link{ann_whisker}},
   \code{\link{arrow}}
 }
+\concept{annotation functions}
