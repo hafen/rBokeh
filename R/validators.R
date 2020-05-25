@@ -41,7 +41,7 @@ validate <- function(x, type, name) {
       stop("Attribute '", name, "' must be a vector of length ", len, ".",
         call. = FALSE)
     subtype <- strip_white(gsub("^Tuple\\((.*)\\)$", "\\1", type))
-    if (subtype %in% c("Date , Date", "Float , Float")) {
+    if (subtype %in% c("Date, Date", "Float, Float")) {
       if (is.list(x) && all(sapply(x, length) == 1))
         x <- unlist(x)
       if (!is.numeric(x))
@@ -51,6 +51,10 @@ validate <- function(x, type, name) {
       if (is.list(x) && all(sapply(x, length) == 1))
         x <- as.character(unlist(x))
       return (validate_vector(x, ttrns$String, "String", name))
+    } else if (subtype == "Int, Int, Int, Int") {
+      if (is.list(x) && all(sapply(x, length) == 1))
+        x <- as.integer(unlist(x))
+      return (validate_vector(x, ttrns$Int, "Int", name))
     }
   }
 
@@ -79,7 +83,7 @@ validate <- function(x, type, name) {
       if (!is.list(x))
         x <- as.list(x)
       x <- validate_list(x, named = FALSE, name = name)
-      return (lapply(x, function(a) validate(a, subtype)))
+      return (lapply(x, function(a) validate(a, subtype, name)))
     }
   }
 
@@ -252,6 +256,20 @@ validate <- function(x, type, name) {
       }
     }
   }
+
+  if (type == "NonNegativeInt") {
+    if (is.null(x) || is.na(x))
+      return(NULL)
+
+    x <- as.integer(x)
+    if (x < 0)
+      stop("Attribute '", name, "' must a non-negative integer.",
+        call. = FALSE)
+    return(x)
+  }
+
+  if (type == "Size")
+    return(x)
 
   if (type == "Any")
     return(x)

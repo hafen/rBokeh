@@ -391,7 +391,7 @@ prepare_figure <- function(fig) {
       ## process hover
       ##---------------------------------------------------------
 
-      cur_hov_str <- as.character(cur_hov)
+      cur_hov_str <- rlang::as_label(cur_hov)
       cur_hov <- rlang::eval_tidy(cur_hov, ly$data)
       if (!is.null(cur_hov)) {
         pars <- list()

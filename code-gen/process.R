@@ -1,12 +1,12 @@
 # # first clone https://github.com/bokeh/bokeh, then run:
 # git fetch --all --tags --prune
-# git checkout tags/1.3.4 -b 1.3.4
+# git checkout tags/1.4.0 -b 1.4.0
 # conda install bokeh # to make sure you have everything
-# python scripts/spec.py > ~/Documents/code/rbokeh/code-gen/spec_1.3.4.json
+# python scripts/spec.py > ~/Documents/code/rbokeh/code-gen/spec_1.4.0.json
 
 source("code-gen/fns.R")
 
-mods <- get_mod_json("code-gen/spec_1.3.4.json")
+mods <- get_mod_json("code-gen/spec_1.4.0.json")
 
 ## write out R6 class code for all models
 ##---------------------------------------------------------

@@ -86,7 +86,7 @@ sanitize <- function(x) {
 # get the list values of arguments that were actually specified in a function call
 # nms is an optional vector of names to subset results to
 get_specified_args <- function(nms = NULL, nnms = NULL) {
-  res <- rlang::lang_args(match.call(
+  res <- rlang::call_args(match.call(
     definition = sys.function(-1),
     call = sys.call(-1)
   ))
