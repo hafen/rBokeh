@@ -26,7 +26,6 @@ Imports:
     lazyeval,
     pryr,
     magrittr,
-    ggplot2,
     scales,
     gistr
 Suggests:
