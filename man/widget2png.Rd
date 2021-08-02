@@ -20,9 +20,10 @@ Make a static png file for an htmlwidget
 This uses phantomjs (\url{https://phantomjs.org}) to render your htmlwidget in a headless browser and take a screenshot of it, creating a static output.  This assumes that phantomjs has been installed on your machine and is available as a system call.  For plots that take longer to load and render, you may need to increase the value of \code{timeout}.  Note that this function is experimental.
 }
 \examples{
-\donttest{
+\dontrun{
+path <- tempfile(fileext = ".png")
 figure(tools = NULL) \%>\%
   ly_points(1:10) \%>\%
-  widget2png("/tmp/test.png")
+  widget2png(path)
 }
 }
