@@ -37,7 +37,8 @@ Suggests:
     roxygen2 (>= 5.0.0),
     latticeExtra,
     knitr,
-    rmarkdown
+    rmarkdown,
+    markdown
 Enhances: shiny (>= 0.12)
 RoxygenNote: 7.1.1
 Encoding: UTF-8
