@@ -1,4 +1,4 @@
-# https://bokeh.pydata.org/en/latest/docs/reference/models.html
+# https://docs.bokeh.org/en/latest/docs/reference/models.html
 
 #' Add "pan" tool to a Bokeh figure
 #' @param dimensions a vector specifying whether the pan tool should pan with respect to the x axis ("width") and the y axis ("height") or "both"
