@@ -9,5 +9,5 @@
 R interface for creating plots in Bokeh.  Bokeh by Continuum Analytics, \url{https://docs.bokeh.org/en/latest/}
 }
 \details{
-For full documentation on the package, visit \url{https://hafen.github.io/rbokeh}
+For full documentation on the package, visit \url{https://hafen.github.io/rbokeh/}
 }

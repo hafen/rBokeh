@@ -11,7 +11,7 @@ Authors@R: c(
       comment = "Bokeh library in htmlwidgets/lib, https://bokeh.pydata.org"
     ))
 Description: A native R plotting library that provides a flexible declarative interface for creating interactive web-based graphics, backed by the Bokeh visualization library <https://bokeh.pydata.org/>.
-URL: https://hafen.github.io/rbokeh https://github.com/bokeh/rbokeh
+URL: https://hafen.github.io/rbokeh/ https://github.com/bokeh/rbokeh
 BugReports: https://github.com/bokeh/rbokeh/issues
 License: MIT + file LICENSE
 LazyData: true

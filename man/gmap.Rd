@@ -32,11 +32,11 @@ gmap(
 
 \item{lng}{longitude where the map should be centered}
 
-\item{zoom}{initial \href{https://developers.google.com/maps/documentation/staticmaps/#Zoomlevels}{zoom level} to use when displaying the map}
+\item{zoom}{initial \href{https://developers.google.com/maps/documentation/maps-static/start#Zoomlevels}{zoom level} to use when displaying the map}
 
 \item{api_key}{Google Maps \href{https://developers.google.com/maps/documentation/javascript/get-api-key}{API key}}
 
-\item{map_type}{\href{https://developers.google.com/maps/documentation/staticmaps/#MapTypes}{map type} to use for the plot - one of "hybrid", "satellite", "roadmap", "terrain"}
+\item{map_type}{\href{https://developers.google.com/maps/documentation/maps-static/start#MapTypes}{map type} to use for the plot - one of "hybrid", "satellite", "roadmap", "terrain"}
 
 \item{map_style}{a json string of a Google Maps style - see \code{\link{gmap_style}}}
 
